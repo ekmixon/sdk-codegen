@@ -1,5 +1,14 @@
 # Changelog
 
+### [1.18.1](https://www.github.com/looker-open-source/sdk-codegen/compare/sdk-codegen-all-v1.18.0...sdk-codegen-all-v1.18.1) (2021-11-10)
+
+
+### Bug Fixes
+
+* Remove hackathon project invite only UI ([#905](https://www.github.com/looker-open-source/sdk-codegen/issues/905)) ([2f10dd3](https://www.github.com/looker-open-source/sdk-codegen/commit/2f10dd3c07e6ddb076893932f4eccb2ac6dc3565))
+* restore join/leave project functionality ([#904](https://www.github.com/looker-open-source/sdk-codegen/issues/904)) ([42b2c0f](https://www.github.com/looker-open-source/sdk-codegen/commit/42b2c0f80a99685e02acc1a7b466b39029f15cad))
+* Updated hackathon agenda links ([#901](https://www.github.com/looker-open-source/sdk-codegen/issues/901)) ([7f58b6c](https://www.github.com/looker-open-source/sdk-codegen/commit/7f58b6c096ab8a6b983ea515b38be9877d9faa20))
+
 ## [1.18.0](https://www.github.com/looker-open-source/sdk-codegen/compare/sdk-codegen-all-v1.17.1...sdk-codegen-all-v1.18.0) (2021-11-10)
 
 
