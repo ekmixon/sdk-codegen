@@ -13,36 +13,27 @@ sdk = looker_sdk.init40("../looker.ini")
 
 def add_csv_of_users_to_group(group_name:str, file_path:str):
     group = sdk.search_groups(name=group_name)
-    group = group[0]
-    if group:
+    if group := group[0]:
         data = []
         i=0
         with open(file_path) as f:
             ## MAKE SURE YOU DOUBLE CHECK THE DELIMITER IN YOUR CSV
             reader = csv.reader(f, delimiter=' ')
-            for row in reader:
-                data.append(str(row[i]))
-
+            data.extend(str(row[i]) for row in reader)
         ## loops through list and searches user
-        ## grabs user id and passes that through add user to group        
+        ## grabs user id and passes that through add user to group
         try:
             for email in data:
                 for user in sdk.search_users(email=email):
                     #print(user.email)
                     if user.id:
                         sdk.add_group_user(group_id=group.id, body=models40.GroupIdForGroupUserInclusion(user_id= user.id))
-                    else:
-                        pass
-
         except KeyError:
             print('Key error \n')
-            pass
         except TypeError:
             print('Type error \n')
-            pass
         except IndexError:
             print('Index error \n')
-            pass
     else:
         print("Group does not exist")
 ## THE FILE NAME OF THE CSV WILL WORK IF IT IS IN THE SAME DIRECTORY

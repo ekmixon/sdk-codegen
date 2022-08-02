@@ -97,7 +97,7 @@ class MockTransport(transport.Transport):
                     expected_headers = {
                         "Content-Type": "application/x-www-form-urlencoded"
                     }
-                    expected_headers.update(transport_options.get("headers", {}))
+                    expected_headers |= transport_options.get("headers", {})
                     if transport_options["headers"] != expected_headers:
                         raise TypeError(f"Must send {expected_headers}")
                 else:

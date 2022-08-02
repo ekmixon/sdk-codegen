@@ -169,9 +169,8 @@ def safe_enum__new__(cls, value):
     """
     if not isinstance(value, (str, int, bool)):
         return super().__new__(cls, value)
-    else:
-        vals = {v.value: v for v in cls.__members__.values()}
-        return vals.get(value, cls.invalid_api_enum_value)
+    vals = {v.value: v for v in cls.__members__.values()}
+    return vals.get(value, cls.invalid_api_enum_value)
 
 
 T = TypeVar("T")

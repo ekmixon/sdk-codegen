@@ -106,19 +106,7 @@ def test_get_serialized(
     assert actual == expected
 
 
-@pytest.mark.parametrize(
-    "test_response, test_structure, expected",
-    [
-        (
-            transport.Response(
-                ok=True,
-                value=bytes(range(0, 10)),
-                response_mode=transport.ResponseMode.BINARY,
-            ),
-            Union[str, bytes],
-            bytes(range(0, 10)),
-        ),
-        (
+@pytest.mark.parametrize("test_response, test_structure, expected", [(transport.Response(ok=True, value=bytes(range(10)), response_mode=transport.ResponseMode.BINARY), Union[str, bytes], bytes(range(10))), (
             transport.Response(
                 ok=True,
                 value=b"some response text",
@@ -126,8 +114,7 @@ def test_get_serialized(
             ),
             Union[str, bytes],
             "some response text",
-        ),
-        (
+        ), (
             transport.Response(
                 ok=True,
                 value=bytes("ئ", encoding="arabic"),
@@ -136,15 +123,13 @@ def test_get_serialized(
             ),
             Union[str, bytes],
             "ئ",
-        ),
-        (
+        ), (
             transport.Response(
                 ok=True, value=b"", response_mode=transport.ResponseMode.STRING
             ),
             None,
             None,
-        ),
-        (
+        ), (
             transport.Response(
                 ok=True,
                 value=bytes(
@@ -175,9 +160,7 @@ def test_get_serialized(
                 ),
                 supported_versions=None,
             ),
-        ),
-    ],
-)
+        )])
 def test_return(
     api: api_methods.APIMethods,
     test_response: transport.Response,

@@ -40,7 +40,7 @@ class RequestsTransport(transport.Transport):
         self.settings = settings
         headers: Dict[str, str] = {transport.LOOKER_API_ID: settings.agent_tag}
         if settings.headers:
-            headers.update(settings.headers)
+            headers |= settings.headers
         session.headers.update(headers)
         session.verify = settings.verify_ssl
         self.session = session
@@ -63,7 +63,7 @@ class RequestsTransport(transport.Transport):
         headers = {}
         timeout = self.settings.timeout
         if authenticator:
-            headers.update(authenticator(transport_options or {}))
+            headers |= authenticator(transport_options or {})
         if transport_options:
             if transport_options.get("headers"):
                 headers.update(transport_options["headers"])
@@ -92,10 +92,10 @@ class RequestsTransport(transport.Transport):
                 resp.content,
                 transport.response_mode(resp.headers.get("content-type")),
             )
-            encoding = cast(
-                Optional[str], requests.utils.get_encoding_from_headers(resp.headers)
-            )
-            if encoding:
+            if encoding := cast(
+                Optional[str],
+                requests.utils.get_encoding_from_headers(resp.headers),
+            ):
                 ret.encoding = encoding
 
         return ret

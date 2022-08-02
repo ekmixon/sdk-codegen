@@ -389,11 +389,9 @@ def test_png_svg_downloads(sdk: mtds.Looker40SDK):
     if looks:
         resource_type = "look"
         resource_id = str(looks[0].id)
-    else:
-        dashboards = sdk.search_dashboards(limit=1)
-        if dashboards:
-            resource_type = "dashboard"
-            resource_id = cast(str, dashboards[0].id)
+    elif dashboards := sdk.search_dashboards(limit=1):
+        resource_type = "dashboard"
+        resource_id = cast(str, dashboards[0].id)
 
     png = sdk.content_thumbnail(
         type=resource_type, resource_id=resource_id, format="png"
@@ -516,8 +514,8 @@ def create_query_request(q, limit: Optional[str] = None) -> ml.WriteQuery:
 def test_crud_dashboard(sdk: mtds.Looker40SDK, queries_system_activity, dashboards):
     """Test creating, retrieving, updating and deleting a dashboard."""
     qhash: Dict[Union[str, int], ml.Query] = {}
+    limit = "10"
     for idx, q in enumerate(queries_system_activity):
-        limit = "10"
         request = create_query_request(q, limit)
         key = q.get("id") or str(idx)
         qhash[key] = sdk.create_query(request)
@@ -641,9 +639,8 @@ def get_query_id(
         id = id[1:]
         # if id is invalid, default to first query. test data is bad
         query = qhash.get(id) or list(qhash.values())[0]
-        query_id = query.id
+        return query.id
     elif (isinstance(id, str) and id.isdigit()) or isinstance(id, int):
-        query_id = int(id)
+        return int(id)
     else:
-        query_id = None
-    return query_id
+        return None

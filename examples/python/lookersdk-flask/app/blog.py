@@ -52,7 +52,7 @@ def create():
             look_image = get_image_for_look(look_id).decode("utf-8")
             # get_image_for_look returns a b64 image string representing a rendered Look.
         except Exception as e:
-            error = "Error running Look: {}".format(e)
+            error = f"Error running Look: {e}"
 
         if not title:
             error = "Title is required."
@@ -86,7 +86,7 @@ def update(id):
             look_image = get_image_for_look(look_id).decode("utf-8")
             # get_image_for_look returns a b64 image string representing a rendered Look.
         except Exception as e:
-            error = "Error running Look: {}".format(e)
+            error = f"Error running Look: {e}"
 
         if not title:
             error = "Title is required."

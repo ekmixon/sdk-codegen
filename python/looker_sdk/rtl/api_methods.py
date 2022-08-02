@@ -87,18 +87,16 @@ class APIMethods:
             raise error.SDKError(response.value.decode(encoding=encoding))
         ret: TReturn
         if structure is None:
-            ret = None
+            return None
         elif response.response_mode == transport.ResponseMode.BINARY:
-            ret = response.value
+            return response.value
         else:
             value = response.value.decode(encoding=encoding)
-            if structure is Union[str, bytes] or structure is str:  # type: ignore
-                ret = value
-            else:
-                # ignore type: mypy bug doesn't recognized kwarg
-                # `structure` to partial func
-                ret = self.deserialize(data=value, structure=structure)  # type: ignore
-        return ret
+            return (
+                value
+                if structure is Union[str, bytes] or structure is str
+                else self.deserialize(data=value, structure=structure)
+            )
 
     def _convert_query_params(
         self, query_params: TQueryParams
@@ -145,12 +143,11 @@ class APIMethods:
     def _get_serialized(self, body: TBody) -> Optional[bytes]:
         serialized: Optional[bytes]
         if isinstance(body, str):
-            serialized = body.encode("utf-8")
+            return body.encode("utf-8")
         elif isinstance(body, (list, dict, model.Model)):
-            serialized = self.serialize(body)
+            return self.serialize(body)
         else:
-            serialized = None
-        return serialized
+            return None
 
     def post(
         self,

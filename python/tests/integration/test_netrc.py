@@ -16,10 +16,7 @@ def sdk(sdk40) -> mtds.Looker40SDK:
 def can_create_netrc_file():
     """Check if netrc can be created in home directory."""
     can = False
-    if NETRC_LOCATION.startswith("~") or os.path.exists(NETRC_LOCATION):
-        can = False
-    else:
-        can = True
+    can = not NETRC_LOCATION.startswith("~") and not os.path.exists(NETRC_LOCATION)
     return can
 
 

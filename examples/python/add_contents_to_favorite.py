@@ -32,9 +32,7 @@ def add_boards_to_users(board_id: int, users_id: list):
   so sdk.auth.login_user() and sdk.auth.logout() are called to sudo as each user to call `create_content_favorite()"""
   for i in users_id: 
     sdk.auth.login_user(i)
-    params = {}
-    params["user_id"] = i 
-    params["content_metadata_id"] = content_metadata_id
+    params = {"user_id": i, "content_metadata_id": content_metadata_id}
     sdk.create_content_favorite(params)
     sdk.auth.logout() 
 
@@ -65,9 +63,7 @@ def add_dashboards_to_users(dashboard_id: str, users_id: list):
   sdk.auth.login_user() and `sdk.auth.logout()` are called to sudo as each user to call `create_content_favorite()"""
   for i in users_id: 
     sdk.auth.login_user(i)
-    params = {}
-    params["user_id"] = i 
-    params["content_metadata_id"] = content_metadata_id
+    params = {"user_id": i, "content_metadata_id": content_metadata_id}
     sdk.create_content_favorite(params)
     sdk.auth.logout() 
 

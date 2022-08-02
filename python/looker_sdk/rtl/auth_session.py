@@ -59,9 +59,7 @@ class AuthSession:
 
     def _is_authenticated(self, token: auth_token.AuthToken) -> bool:
         """Determines if current token is active."""
-        if not (token.access_token):
-            return False
-        return token.is_active
+        return token.is_active if token.access_token else False
 
     @property
     def is_sudo_authenticated(self) -> bool:
@@ -120,14 +118,13 @@ class AuthSession:
                 self._sudo_id = None
                 raise
 
-        else:
-            if self._sudo_id != sudo_id:
-                raise error.SDKError(
-                    f"Another user ({self._sudo_id}) "
-                    "is already logged in. Log them out first."
-                )
-            elif not self.is_sudo_authenticated:
-                self._login_sudo(transport_options or {})
+        elif self._sudo_id != sudo_id:
+            raise error.SDKError(
+                f"Another user ({self._sudo_id}) "
+                "is already logged in. Log them out first."
+            )
+        elif not self.is_sudo_authenticated:
+            self._login_sudo(transport_options or {})
 
     def _login(self, transport_options: transport.TransportOptions) -> None:
         client_id = self.settings.read_config().get("client_id")

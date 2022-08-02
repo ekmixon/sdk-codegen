@@ -41,20 +41,28 @@ def get_folders():
 
 
 def grab_folder_permissions(f: str, folders: object):
-    print('checking folder: {}'.format(f))
+    print(f'checking folder: {f}')
 
     if 'access' in folders[f]:
-        print('skipping folder {}: already have access details'.format(f))
+        print(f'skipping folder {f}: already have access details')
     else:
         # groups / users can view / edit in folder (content_metadata_id)
         cmgu = sdk.all_content_metadata_accesses(
             content_metadata_id=folders[f]["content_metadata_id"], fields='group_id,user_id,permission_type')
 
-        access = {"groups": [], "users": []}
-        access["groups"] = [{"id": i.group_id, "permission_type": i.permission_type.value}
-                            for i in cmgu if i.group_id is not None]
-        access["users"] = [{"id": i.user_id, "permission_type": i.permission_type.value}
-                           for i in cmgu if i.user_id is not None]
+        access = {
+            "groups": [
+                {"id": i.group_id, "permission_type": i.permission_type.value}
+                for i in cmgu
+                if i.group_id is not None
+            ],
+            "users": [
+                {"id": i.user_id, "permission_type": i.permission_type.value}
+                for i in cmgu
+                if i.user_id is not None
+            ],
+        }
+
         folders[f]['access'] = access
 
     # folders / dash / looks in folder (content_metadata_id). use to check if folder 'inherits' content access
@@ -66,13 +74,13 @@ def grab_folder_permissions(f: str, folders: object):
         if c.folder_id is not None:
             try:
                 if c.inherits:
-                    print('{} inherits as parent {}'.format(c.folder_id, f))
+                    print(f'{c.folder_id} inherits as parent {f}')
                     folders[c.folder_id]['access'] = folders[f]['access']
                 # recursively set child folders (depth first)
                 grab_folder_permissions(c.folder_id, folders)
             except:
                 # most likely the folder has been deleted
-                print('skipping folder {}: no access data'.format(c.folder_id))
+                print(f'skipping folder {c.folder_id}: no access data')
 
     return folders
 

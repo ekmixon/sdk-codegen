@@ -83,7 +83,7 @@ def test_configure(settings):
 
     test = requests_transport.RequestsTransport.configure(settings)
     assert isinstance(test, requests_transport.RequestsTransport)
-    assert test.session.headers.get("x-looker-appid") == f"foobar"
+    assert test.session.headers.get("x-looker-appid") == "foobar"
 
 
 parametrize = [

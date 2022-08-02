@@ -73,19 +73,19 @@ class ApiSettings(PApiSettings):
             section (str): section in config file. If not supplied default to
                 reading first section.
         """
-        if not os.path.isfile(filename):
-            if filename and filename not in _DEFAULT_INIS:
-                raise FileNotFoundError(f"No config file found: '{filename}'")
+        if (
+            not os.path.isfile(filename)
+            and filename
+            and filename not in _DEFAULT_INIS
+        ):
+            raise FileNotFoundError(f"No config file found: '{filename}'")
 
         self.filename = filename
         self.section = section
         self.env_prefix = env_prefix
         data = self.read_config()
         verify_ssl = data.get("verify_ssl")
-        if verify_ssl is None:
-            self.verify_ssl = True
-        else:
-            self.verify_ssl = self._bool(verify_ssl)
+        self.verify_ssl = True if verify_ssl is None else self._bool(verify_ssl)
         self.base_url = data.get("base_url", "")
         self.timeout = int(data.get("timeout", 120))
         self.headers = {"Content-Type": "application/json"}
@@ -109,14 +109,14 @@ class ApiSettings(PApiSettings):
             data = dict(cfg_parser[section])
 
         if self.env_prefix:
-            data.update(self._override_from_env())
+            data |= self._override_from_env()
         return self._clean_input(data)
 
     @staticmethod
     def _bool(val: str) -> bool:
-        if val.lower() in ("yes", "y", "true", "t", "1"):
+        if val.lower() in {"yes", "y", "true", "t", "1"}:
             converted = True
-        elif val.lower() in ("", "no", "n", "false", "f", "0"):
+        elif val.lower() in {"", "no", "n", "false", "f", "0"}:
             converted = False
         else:
             raise TypeError
@@ -124,24 +124,19 @@ class ApiSettings(PApiSettings):
 
     def _override_from_env(self) -> Dict[str, str]:
         overrides = {}
-        base_url = os.getenv(f"{self.env_prefix}_BASE_URL")
-        if base_url:
+        if base_url := os.getenv(f"{self.env_prefix}_BASE_URL"):
             overrides["base_url"] = base_url
 
-        verify_ssl = os.getenv(f"{self.env_prefix}_VERIFY_SSL")
-        if verify_ssl:
+        if verify_ssl := os.getenv(f"{self.env_prefix}_VERIFY_SSL"):
             overrides["verify_ssl"] = verify_ssl
 
-        timeout = os.getenv(f"{self.env_prefix}_TIMEOUT")
-        if timeout:
+        if timeout := os.getenv(f"{self.env_prefix}_TIMEOUT"):
             overrides["timeout"] = timeout
 
-        client_id = os.getenv(f"{self.env_prefix}_CLIENT_ID")
-        if client_id:
+        if client_id := os.getenv(f"{self.env_prefix}_CLIENT_ID"):
             overrides["client_id"] = client_id
 
-        client_secret = os.getenv(f"{self.env_prefix}_CLIENT_SECRET")
-        if client_secret:
+        if client_secret := os.getenv(f"{self.env_prefix}_CLIENT_SECRET"):
             overrides["client_secret"] = client_secret
 
         return overrides

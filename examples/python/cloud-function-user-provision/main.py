@@ -27,8 +27,7 @@ def main(request):
   try: 
     request_json = request.get_json()
     email = request_json["email"]
-    result = looker_user_provision(email=email)
-    return result 
+    return looker_user_provision(email=email)
   except:
     return 'Please provide JSON in the format of {"email":"test@test.com"}'
 # [END main(request)]
@@ -38,8 +37,7 @@ def main_gsheet(request):
   """Take email from a cell inside an existing Google Sheet"""
   try: 
     email = get_email_from_sheet()
-    result = looker_user_provision(email=email)
-    return result 
+    return looker_user_provision(email=email)
   except:
     return 'An error occurred.'
 
@@ -62,12 +60,11 @@ def get_email_from_sheet():
   sheet = service.spreadsheets()
   result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,
                                 range=SAMPLE_RANGE_NAME).execute()
-  
+
   # `values` will be a list of lists (i.e.: [['email1'], ['email2']])
   # and we can access value 'email' using index
   values = result.get('values', [])
-  email = values[0][0]
-  return email
+  return values[0][0]
 # [END main_gsheet(request)]
   
 # [START looker_user_provision]
@@ -83,12 +80,9 @@ def looker_user_provision(email):
 def search_users_by_email(email):
   """An email can only be assigned to one user in a Looker instance. 
   Therefore, search_user(email=test@test.com) will result in either
-  an empty dictionary, or a dictionary containing one user at index 0"""  
+  an empty dictionary, or a dictionary containing one user at index 0"""
   users = sdk.search_users(email=email)
-  if len(users) == 0:
-    return None 
-  else: 
-    return users[0]["id"]
+  return None if len(users) == 0 else users[0]["id"]
 
 def create_users(email):
   new_user = sdk.create_user(

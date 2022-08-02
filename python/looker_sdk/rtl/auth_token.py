@@ -96,6 +96,4 @@ class AuthToken:
     @property
     def is_active(self) -> bool:
         """True if authentication token has not timed out"""
-        if not self.expires_at:
-            return False
-        return self.expires_at > datetime.datetime.now()
+        return self.expires_at > datetime.datetime.now() if self.expires_at else False

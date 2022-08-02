@@ -77,16 +77,18 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.AccessToken:
         """Login"""
-        response = cast(
+        return cast(
             mdls.AccessToken,
             self.post(
                 path="/login",
                 structure=mdls.AccessToken,
-                query_params={"client_id": client_id, "client_secret": client_secret},
+                query_params={
+                    "client_id": client_id,
+                    "client_secret": client_secret,
+                },
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create an access token that runs as a given user.
     #
@@ -118,7 +120,7 @@ class Looker31SDK(api_methods.APIMethods):
         warnings.warn(
             "login_user behavior changed significantly in 21.4.0. See https://git.io/JOtH1"
         )
-        response = cast(
+        return cast(
             mdls.AccessToken,
             self.post(
                 path=f"/login/{user_id}",
@@ -127,7 +129,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Logout of the API and invalidate the current access token.
     #
@@ -137,13 +138,12 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Logout"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path="/logout", structure=str, transport_options=transport_options
             ),
         )
-        return response
 
     # endregion
 
@@ -191,7 +191,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.EmbedUrlResponse:
         """Create SSO Embed Url"""
-        response = cast(
+        return cast(
             mdls.EmbedUrlResponse,
             self.post(
                 path="/embed/sso_url",
@@ -200,7 +200,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the LDAP configuration.
     #
@@ -225,7 +224,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.LDAPConfig:
         """Get LDAP Configuration"""
-        response = cast(
+        return cast(
             mdls.LDAPConfig,
             self.get(
                 path="/ldap_config",
@@ -233,7 +232,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update the LDAP configuration.
     #
@@ -254,7 +252,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.LDAPConfig:
         """Update LDAP Configuration"""
-        response = cast(
+        return cast(
             mdls.LDAPConfig,
             self.patch(
                 path="/ldap_config",
@@ -263,7 +261,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Test the connection settings for an LDAP configuration.
     #
@@ -291,7 +288,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.LDAPConfigTestResult:
         """Test LDAP Connection"""
-        response = cast(
+        return cast(
             mdls.LDAPConfigTestResult,
             self.put(
                 path="/ldap_config/test_connection",
@@ -300,7 +297,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Test the connection authentication settings for an LDAP configuration.
     #
@@ -330,7 +326,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.LDAPConfigTestResult:
         """Test LDAP Auth"""
-        response = cast(
+        return cast(
             mdls.LDAPConfigTestResult,
             self.put(
                 path="/ldap_config/test_auth",
@@ -339,7 +335,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Test the user authentication settings for an LDAP configuration without authenticating the user.
     #
@@ -358,7 +353,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.LDAPConfigTestResult:
         """Test LDAP User Info"""
-        response = cast(
+        return cast(
             mdls.LDAPConfigTestResult,
             self.put(
                 path="/ldap_config/test_user_info",
@@ -367,7 +362,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Test the user authentication settings for an LDAP configuration.
     #
@@ -386,7 +380,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.LDAPConfigTestResult:
         """Test LDAP User Auth"""
-        response = cast(
+        return cast(
             mdls.LDAPConfigTestResult,
             self.put(
                 path="/ldap_config/test_user_auth",
@@ -395,7 +389,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the OIDC configuration.
     #
@@ -416,7 +409,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.OIDCConfig:
         """Get OIDC Configuration"""
-        response = cast(
+        return cast(
             mdls.OIDCConfig,
             self.get(
                 path="/oidc_config",
@@ -424,7 +417,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update the OIDC configuration.
     #
@@ -443,7 +435,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.OIDCConfig:
         """Update OIDC Configuration"""
-        response = cast(
+        return cast(
             mdls.OIDCConfig,
             self.patch(
                 path="/oidc_config",
@@ -452,7 +444,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get a OIDC test configuration by test_slug.
     #
@@ -465,7 +456,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.OIDCConfig:
         """Get OIDC Test Configuration"""
         test_slug = self.encode_path_param(test_slug)
-        response = cast(
+        return cast(
             mdls.OIDCConfig,
             self.get(
                 path=f"/oidc_test_configs/{test_slug}",
@@ -473,7 +464,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete a OIDC test configuration.
     #
@@ -486,7 +476,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Delete OIDC Test Configuration"""
         test_slug = self.encode_path_param(test_slug)
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/oidc_test_configs/{test_slug}",
@@ -494,7 +484,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a OIDC test configuration.
     #
@@ -505,7 +494,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.OIDCConfig:
         """Create OIDC Test Configuration"""
-        response = cast(
+        return cast(
             mdls.OIDCConfig,
             self.post(
                 path="/oidc_test_configs",
@@ -514,7 +503,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get password config.
     #
@@ -524,7 +512,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.PasswordConfig:
         """Get Password Config"""
-        response = cast(
+        return cast(
             mdls.PasswordConfig,
             self.get(
                 path="/password_config",
@@ -532,7 +520,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update password config.
     #
@@ -543,7 +530,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.PasswordConfig:
         """Update Password Config"""
-        response = cast(
+        return cast(
             mdls.PasswordConfig,
             self.patch(
                 path="/password_config",
@@ -552,7 +539,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Force all credentials_email users to reset their login passwords upon their next login.
     #
@@ -562,7 +548,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Force password reset"""
-        response = cast(
+        return cast(
             str,
             self.put(
                 path="/password_config/force_password_reset_at_next_login_for_all_users",
@@ -570,7 +556,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the SAML configuration.
     #
@@ -591,7 +576,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.SamlConfig:
         """Get SAML Configuration"""
-        response = cast(
+        return cast(
             mdls.SamlConfig,
             self.get(
                 path="/saml_config",
@@ -599,7 +584,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update the SAML configuration.
     #
@@ -618,7 +602,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.SamlConfig:
         """Update SAML Configuration"""
-        response = cast(
+        return cast(
             mdls.SamlConfig,
             self.patch(
                 path="/saml_config",
@@ -627,7 +611,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get a SAML test configuration by test_slug.
     #
@@ -640,7 +623,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.SamlConfig:
         """Get SAML Test Configuration"""
         test_slug = self.encode_path_param(test_slug)
-        response = cast(
+        return cast(
             mdls.SamlConfig,
             self.get(
                 path=f"/saml_test_configs/{test_slug}",
@@ -648,7 +631,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete a SAML test configuration.
     #
@@ -661,7 +643,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Delete SAML Test Configuration"""
         test_slug = self.encode_path_param(test_slug)
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/saml_test_configs/{test_slug}",
@@ -669,7 +651,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a SAML test configuration.
     #
@@ -680,7 +661,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.SamlConfig:
         """Create SAML Test Configuration"""
-        response = cast(
+        return cast(
             mdls.SamlConfig,
             self.post(
                 path="/saml_test_configs",
@@ -689,7 +670,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Parse the given xml as a SAML IdP metadata document and return the result.
     #
@@ -700,7 +680,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.SamlMetadataParseResult:
         """Parse SAML IdP XML"""
-        response = cast(
+        return cast(
             mdls.SamlMetadataParseResult,
             self.post(
                 path="/parse_saml_idp_metadata",
@@ -709,7 +689,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Fetch the given url and parse it as a SAML IdP metadata document and return the result.
     # Note that this requires that the url be public or at least at a location where the Looker instance
@@ -722,7 +701,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.SamlMetadataParseResult:
         """Parse SAML IdP Url"""
-        response = cast(
+        return cast(
             mdls.SamlMetadataParseResult,
             self.post(
                 path="/fetch_and_parse_saml_idp_metadata",
@@ -731,7 +710,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get session config.
     #
@@ -741,7 +719,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.SessionConfig:
         """Get Session Config"""
-        response = cast(
+        return cast(
             mdls.SessionConfig,
             self.get(
                 path="/session_config",
@@ -749,7 +727,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update session config.
     #
@@ -760,7 +737,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.SessionConfig:
         """Update Session Config"""
-        response = cast(
+        return cast(
             mdls.SessionConfig,
             self.patch(
                 path="/session_config",
@@ -769,7 +746,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get currently locked-out users.
     #
@@ -781,7 +757,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.UserLoginLockout]:
         """Get All User Login Lockouts"""
-        response = cast(
+        return cast(
             Sequence[mdls.UserLoginLockout],
             self.get(
                 path="/user_login_lockouts",
@@ -790,7 +766,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Search currently locked-out users.
     #
@@ -818,7 +793,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.UserLoginLockout]:
         """Search User Login Lockouts"""
-        response = cast(
+        return cast(
             Sequence[mdls.UserLoginLockout],
             self.get(
                 path="/user_login_lockouts/search",
@@ -837,7 +812,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Removes login lockout for the associated user.
     #
@@ -850,7 +824,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Delete User Login Lockout"""
         key = self.encode_path_param(key)
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/user_login_lockout/{key}",
@@ -858,7 +832,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -881,7 +854,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.ColorCollection]:
         """Get all Color Collections"""
-        response = cast(
+        return cast(
             Sequence[mdls.ColorCollection],
             self.get(
                 path="/color_collections",
@@ -890,7 +863,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a custom color collection with the specified information
     #
@@ -909,7 +881,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ColorCollection:
         """Create ColorCollection"""
-        response = cast(
+        return cast(
             mdls.ColorCollection,
             self.post(
                 path="/color_collections",
@@ -918,7 +890,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get an array of all existing **Custom** Color Collections
     # Get a **single** color collection by id with [ColorCollection](#!/ColorCollection/color_collection)
@@ -935,7 +906,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.ColorCollection]:
         """Get all Custom Color Collections"""
-        response = cast(
+        return cast(
             Sequence[mdls.ColorCollection],
             self.get(
                 path="/color_collections/custom",
@@ -944,7 +915,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get an array of all existing **Standard** Color Collections
     # Get a **single** color collection by id with [ColorCollection](#!/ColorCollection/color_collection)
@@ -961,7 +931,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.ColorCollection]:
         """Get all Standard Color Collections"""
-        response = cast(
+        return cast(
             Sequence[mdls.ColorCollection],
             self.get(
                 path="/color_collections/standard",
@@ -970,7 +940,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the default color collection
     #
@@ -984,7 +953,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ColorCollection:
         """Get Default Color Collection"""
-        response = cast(
+        return cast(
             mdls.ColorCollection,
             self.get(
                 path="/color_collections/default",
@@ -992,7 +961,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Set the global default Color Collection by ID
     #
@@ -1007,7 +975,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ColorCollection:
         """Set Default Color Collection"""
-        response = cast(
+        return cast(
             mdls.ColorCollection,
             self.put(
                 path="/color_collections/default",
@@ -1016,7 +984,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get a Color Collection by ID
     #
@@ -1040,7 +1007,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.ColorCollection:
         """Get Color Collection by ID"""
         collection_id = self.encode_path_param(collection_id)
-        response = cast(
+        return cast(
             mdls.ColorCollection,
             self.get(
                 path=f"/color_collections/{collection_id}",
@@ -1049,7 +1016,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update a custom color collection by id.
     # **Note**: Only an API user with the Admin role can call this endpoint. Unauthorized requests will return `Not Found` (404) errors.
@@ -1064,7 +1030,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.ColorCollection:
         """Update Custom Color collection"""
         collection_id = self.encode_path_param(collection_id)
-        response = cast(
+        return cast(
             mdls.ColorCollection,
             self.patch(
                 path=f"/color_collections/{collection_id}",
@@ -1073,7 +1039,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete a custom color collection by id
     #
@@ -1093,7 +1058,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Delete ColorCollection"""
         collection_id = self.encode_path_param(collection_id)
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/color_collections/{collection_id}",
@@ -1101,7 +1066,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -1115,7 +1079,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.BackupConfiguration:
         """Get Backup Configuration"""
-        response = cast(
+        return cast(
             mdls.BackupConfiguration,
             self.get(
                 path="/backup_configuration",
@@ -1123,7 +1087,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### WARNING: The Looker internal database backup function has been deprecated.
     #
@@ -1134,7 +1097,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.BackupConfiguration:
         """Update Backup Configuration"""
-        response = cast(
+        return cast(
             mdls.BackupConfiguration,
             self.patch(
                 path="/backup_configuration",
@@ -1143,7 +1106,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # Get the current Cloud Storage Configuration.
     #
@@ -1153,7 +1115,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.BackupConfiguration:
         """Get Cloud Storage"""
-        response = cast(
+        return cast(
             mdls.BackupConfiguration,
             self.get(
                 path="/cloud_storage",
@@ -1161,7 +1123,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # Update the current Cloud Storage Configuration.
     #
@@ -1172,7 +1133,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.BackupConfiguration:
         """Update Cloud Storage"""
-        response = cast(
+        return cast(
             mdls.BackupConfiguration,
             self.patch(
                 path="/cloud_storage",
@@ -1181,7 +1142,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the current status and content of custom welcome emails
     #
@@ -1191,7 +1151,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.CustomWelcomeEmail:
         """Get Custom Welcome Email"""
-        response = cast(
+        return cast(
             mdls.CustomWelcomeEmail,
             self.get(
                 path="/custom_welcome_email",
@@ -1199,7 +1159,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # Update custom welcome email setting and values. Optionally send a test email with the new content to the currently logged in user.
     #
@@ -1212,7 +1171,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.CustomWelcomeEmail:
         """Update Custom Welcome Email Content"""
-        response = cast(
+        return cast(
             mdls.CustomWelcomeEmail,
             self.patch(
                 path="/custom_welcome_email",
@@ -1222,7 +1181,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # Requests to this endpoint will send a welcome email with the custom content provided in the body to the currently logged in user.
     #
@@ -1233,7 +1191,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.WelcomeEmailTest:
         """Send a test welcome email to the currently logged in user with the supplied content"""
-        response = cast(
+        return cast(
             mdls.WelcomeEmailTest,
             self.put(
                 path="/custom_welcome_email_test",
@@ -1242,7 +1200,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Retrieve the value for whether or not digest emails is enabled
     #
@@ -1252,7 +1209,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.DigestEmails:
         """Get Digest_emails"""
-        response = cast(
+        return cast(
             mdls.DigestEmails,
             self.get(
                 path="/digest_emails_enabled",
@@ -1260,7 +1217,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update the setting for enabling/disabling digest emails
     #
@@ -1271,7 +1227,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.DigestEmails:
         """Update Digest_emails"""
-        response = cast(
+        return cast(
             mdls.DigestEmails,
             self.patch(
                 path="/digest_emails_enabled",
@@ -1280,7 +1236,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Trigger the generation of digest email records and send them to Looker's internal system. This does not send
     # any actual emails, it generates records containing content which may be of interest for users who have become inactive.
@@ -1292,7 +1247,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.DigestEmailSend:
         """Deliver digest email contents"""
-        response = cast(
+        return cast(
             mdls.DigestEmailSend,
             self.post(
                 path="/digest_email_send",
@@ -1300,7 +1255,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Set the menu item name and content for internal help resources
     #
@@ -1310,7 +1264,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.InternalHelpResourcesContent:
         """Get Internal Help Resources Content"""
-        response = cast(
+        return cast(
             mdls.InternalHelpResourcesContent,
             self.get(
                 path="/internal_help_resources_content",
@@ -1318,7 +1272,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # Update internal help resources content
     #
@@ -1329,7 +1282,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.InternalHelpResourcesContent:
         """Update internal help resources content"""
-        response = cast(
+        return cast(
             mdls.InternalHelpResourcesContent,
             self.patch(
                 path="/internal_help_resources_content",
@@ -1338,7 +1291,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get and set the options for internal help resources
     #
@@ -1348,7 +1300,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.InternalHelpResources:
         """Get Internal Help Resources"""
-        response = cast(
+        return cast(
             mdls.InternalHelpResources,
             self.get(
                 path="/internal_help_resources_enabled",
@@ -1356,7 +1308,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # Update internal help resources settings
     #
@@ -1367,7 +1318,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.InternalHelpResources:
         """Update internal help resources configuration"""
-        response = cast(
+        return cast(
             mdls.InternalHelpResources,
             self.patch(
                 path="/internal_help_resources",
@@ -1376,7 +1327,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get all legacy features.
     #
@@ -1386,7 +1336,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.LegacyFeature]:
         """Get All Legacy Features"""
-        response = cast(
+        return cast(
             Sequence[mdls.LegacyFeature],
             self.get(
                 path="/legacy_features",
@@ -1394,7 +1344,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about the legacy feature with a specific id.
     #
@@ -1406,7 +1355,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.LegacyFeature:
         """Get Legacy Feature"""
-        response = cast(
+        return cast(
             mdls.LegacyFeature,
             self.get(
                 path=f"/legacy_features/{legacy_feature_id}",
@@ -1414,7 +1363,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update information about the legacy feature with a specific id.
     #
@@ -1427,7 +1375,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.LegacyFeature:
         """Update Legacy Feature"""
-        response = cast(
+        return cast(
             mdls.LegacyFeature,
             self.patch(
                 path=f"/legacy_features/{legacy_feature_id}",
@@ -1436,7 +1384,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get a list of locales that Looker supports.
     #
@@ -1446,7 +1393,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Locale]:
         """Get All Locales"""
-        response = cast(
+        return cast(
             Sequence[mdls.Locale],
             self.get(
                 path="/locales",
@@ -1454,7 +1401,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get a list of timezones that Looker supports (e.g. useful for scheduling tasks).
     #
@@ -1464,7 +1410,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Timezone]:
         """Get All Timezones"""
-        response = cast(
+        return cast(
             Sequence[mdls.Timezone],
             self.get(
                 path="/timezones",
@@ -1472,7 +1418,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all API versions supported by this Looker instance.
     #
@@ -1484,7 +1429,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ApiVersion:
         """Get ApiVersion"""
-        response = cast(
+        return cast(
             mdls.ApiVersion,
             self.get(
                 path="/versions",
@@ -1493,7 +1438,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### This feature is enabled only by special license.
     # ### Gets the whitelabel configuration, which includes hiding documentation links, custom favicon uploading, etc.
@@ -1506,7 +1450,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.WhitelabelConfiguration:
         """Get Whitelabel configuration"""
-        response = cast(
+        return cast(
             mdls.WhitelabelConfiguration,
             self.get(
                 path="/whitelabel_configuration",
@@ -1515,7 +1459,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update the whitelabel configuration
     #
@@ -1526,7 +1469,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.WhitelabelConfiguration:
         """Update Whitelabel configuration"""
-        response = cast(
+        return cast(
             mdls.WhitelabelConfiguration,
             self.put(
                 path="/whitelabel_configuration",
@@ -1535,7 +1478,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -1551,7 +1493,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.DBConnection]:
         """Get All Connections"""
-        response = cast(
+        return cast(
             Sequence[mdls.DBConnection],
             self.get(
                 path="/connections",
@@ -1560,7 +1502,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a connection using the specified configuration.
     #
@@ -1571,7 +1512,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.DBConnection:
         """Create Connection"""
-        response = cast(
+        return cast(
             mdls.DBConnection,
             self.post(
                 path="/connections",
@@ -1580,7 +1521,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about a connection.
     #
@@ -1595,7 +1535,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.DBConnection:
         """Get Connection"""
         connection_name = self.encode_path_param(connection_name)
-        response = cast(
+        return cast(
             mdls.DBConnection,
             self.get(
                 path=f"/connections/{connection_name}",
@@ -1604,7 +1544,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update a connection using the specified configuration.
     #
@@ -1618,7 +1557,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.DBConnection:
         """Update Connection"""
         connection_name = self.encode_path_param(connection_name)
-        response = cast(
+        return cast(
             mdls.DBConnection,
             self.patch(
                 path=f"/connections/{connection_name}",
@@ -1627,7 +1566,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete a connection.
     #
@@ -1640,7 +1578,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Delete Connection"""
         connection_name = self.encode_path_param(connection_name)
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/connections/{connection_name}",
@@ -1648,7 +1586,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete a connection override.
     #
@@ -1664,7 +1601,7 @@ class Looker31SDK(api_methods.APIMethods):
         """Delete Connection Override"""
         connection_name = self.encode_path_param(connection_name)
         override_context = self.encode_path_param(override_context)
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/connections/{connection_name}/connection_override/{override_context}",
@@ -1672,7 +1609,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Test an existing connection.
     #
@@ -1694,7 +1630,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.DBConnectionTestResult]:
         """Test Connection"""
         connection_name = self.encode_path_param(connection_name)
-        response = cast(
+        return cast(
             Sequence[mdls.DBConnectionTestResult],
             self.put(
                 path=f"/connections/{connection_name}/test",
@@ -1703,7 +1639,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Test a connection configuration.
     #
@@ -1723,7 +1658,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.DBConnectionTestResult]:
         """Test Connection Configuration"""
-        response = cast(
+        return cast(
             Sequence[mdls.DBConnectionTestResult],
             self.put(
                 path="/connections/test",
@@ -1733,7 +1668,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all dialects.
     #
@@ -1745,7 +1679,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.DialectInfo]:
         """Get All Dialect Infos"""
-        response = cast(
+        return cast(
             Sequence[mdls.DialectInfo],
             self.get(
                 path="/dialect_info",
@@ -1754,7 +1688,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -1809,7 +1742,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.ContentFavorite]:
         """Search Favorite Contents"""
-        response = cast(
+        return cast(
             Sequence[mdls.ContentFavorite],
             self.get(
                 path="/content_favorite/search",
@@ -1829,7 +1762,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get favorite content by its id
     #
@@ -1843,7 +1775,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ContentFavorite:
         """Get Favorite Content"""
-        response = cast(
+        return cast(
             mdls.ContentFavorite,
             self.get(
                 path=f"/content_favorite/{content_favorite_id}",
@@ -1852,7 +1784,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete favorite content
     #
@@ -1864,7 +1795,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete Favorite Content"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/content_favorite/{content_favorite_id}",
@@ -1872,7 +1803,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create favorite content
     #
@@ -1883,7 +1813,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ContentFavorite:
         """Create Favorite Content"""
-        response = cast(
+        return cast(
             mdls.ContentFavorite,
             self.post(
                 path="/content_favorite",
@@ -1892,7 +1822,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all content metadata in a space.
     #
@@ -1906,7 +1835,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.ContentMeta]:
         """Get All Content Metadatas"""
-        response = cast(
+        return cast(
             Sequence[mdls.ContentMeta],
             self.get(
                 path="/content_metadata",
@@ -1915,7 +1844,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about an individual content metadata record.
     #
@@ -1929,7 +1857,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ContentMeta:
         """Get Content Metadata"""
-        response = cast(
+        return cast(
             mdls.ContentMeta,
             self.get(
                 path=f"/content_metadata/{content_metadata_id}",
@@ -1938,7 +1866,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Move a piece of content.
     #
@@ -1951,7 +1878,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ContentMeta:
         """Update Content Metadata"""
-        response = cast(
+        return cast(
             mdls.ContentMeta,
             self.patch(
                 path=f"/content_metadata/{content_metadata_id}",
@@ -1960,7 +1887,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### All content metadata access records for a content metadata item.
     #
@@ -1974,7 +1900,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.ContentMetaGroupUser]:
         """Get All Content Metadata Accesses"""
-        response = cast(
+        return cast(
             Sequence[mdls.ContentMetaGroupUser],
             self.get(
                 path="/content_metadata_access",
@@ -1986,7 +1912,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create content metadata access.
     #
@@ -1999,7 +1924,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ContentMetaGroupUser:
         """Create Content Metadata Access"""
-        response = cast(
+        return cast(
             mdls.ContentMetaGroupUser,
             self.post(
                 path="/content_metadata_access",
@@ -2011,7 +1936,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update type of access for content metadata.
     #
@@ -2024,7 +1948,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ContentMetaGroupUser:
         """Update Content Metadata Access"""
-        response = cast(
+        return cast(
             mdls.ContentMetaGroupUser,
             self.put(
                 path=f"/content_metadata_access/{content_metadata_access_id}",
@@ -2033,7 +1957,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Remove content metadata access.
     #
@@ -2045,7 +1968,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete Content Metadata Access"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/content_metadata_access/{content_metadata_access_id}",
@@ -2053,7 +1976,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get an image representing the contents of a dashboard or look.
     #
@@ -2080,7 +2002,7 @@ class Looker31SDK(api_methods.APIMethods):
         """Get Content Thumbnail"""
         type = self.encode_path_param(type)
         resource_id = self.encode_path_param(resource_id)
-        response = cast(
+        return cast(
             Union[str, bytes],
             self.get(
                 path=f"/content_thumbnail/{type}/{resource_id}",
@@ -2094,7 +2016,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Validate All Content
     #
@@ -2109,7 +2030,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ContentValidation:
         """Validate Content"""
-        response = cast(
+        return cast(
             mdls.ContentValidation,
             self.get(
                 path="/content_validation",
@@ -2118,7 +2039,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Search Content Views
     #
@@ -2175,7 +2095,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.ContentView]:
         """Search Content Views"""
-        response = cast(
+        return cast(
             Sequence[mdls.ContentView],
             self.get(
                 path="/content_view/search",
@@ -2198,7 +2118,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get a vector image representing the contents of a dashboard or look.
     #
@@ -2221,7 +2140,7 @@ class Looker31SDK(api_methods.APIMethods):
         """Get Vector Thumbnail"""
         type = self.encode_path_param(type)
         resource_id = self.encode_path_param(resource_id)
-        response = cast(
+        return cast(
             str,
             self.get(
                 path=f"/vector_thumbnail/{type}/{resource_id}",
@@ -2230,7 +2149,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -2252,7 +2170,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.DashboardBase]:
         """Get All Dashboards"""
-        response = cast(
+        return cast(
             Sequence[mdls.DashboardBase],
             self.get(
                 path="/dashboards",
@@ -2261,7 +2179,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a new dashboard
     #
@@ -2285,7 +2202,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Dashboard:
         """Create Dashboard"""
-        response = cast(
+        return cast(
             mdls.Dashboard,
             self.post(
                 path="/dashboards",
@@ -2294,7 +2211,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Search Dashboards
     #
@@ -2370,7 +2286,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Dashboard]:
         """Search Dashboards"""
-        response = cast(
+        return cast(
             Sequence[mdls.Dashboard],
             self.get(
                 path="/dashboards/search",
@@ -2399,7 +2315,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Import a LookML dashboard to a space as a UDD
     # Creates a UDD (a dashboard which exists in the Looker database rather than as a LookML file) from the LookML dashboard
@@ -2429,7 +2344,7 @@ class Looker31SDK(api_methods.APIMethods):
         """Import LookML Dashboard"""
         lookml_dashboard_id = self.encode_path_param(lookml_dashboard_id)
         space_id = self.encode_path_param(space_id)
-        response = cast(
+        return cast(
             mdls.Dashboard,
             self.post(
                 path=f"/dashboards/{lookml_dashboard_id}/import/{space_id}",
@@ -2439,7 +2354,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update all linked dashboards to match the specified LookML dashboard.
     #
@@ -2463,7 +2377,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[int]:
         """Sync LookML Dashboard"""
         lookml_dashboard_id = self.encode_path_param(lookml_dashboard_id)
-        response = cast(
+        return cast(
             Sequence[int],
             self.patch(
                 path=f"/dashboards/{lookml_dashboard_id}/sync",
@@ -2473,7 +2387,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about a dashboard
     #
@@ -2494,7 +2407,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Dashboard:
         """Get Dashboard"""
         dashboard_id = self.encode_path_param(dashboard_id)
-        response = cast(
+        return cast(
             mdls.Dashboard,
             self.get(
                 path=f"/dashboards/{dashboard_id}",
@@ -2503,7 +2416,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update a dashboard
     #
@@ -2526,7 +2438,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Dashboard:
         """Update Dashboard"""
         dashboard_id = self.encode_path_param(dashboard_id)
-        response = cast(
+        return cast(
             mdls.Dashboard,
             self.patch(
                 path=f"/dashboards/{dashboard_id}",
@@ -2535,7 +2447,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete the dashboard with the specified id
     #
@@ -2554,7 +2465,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Delete Dashboard"""
         dashboard_id = self.encode_path_param(dashboard_id)
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/dashboards/{dashboard_id}",
@@ -2562,7 +2473,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get Aggregate Table LookML for Each Query on a Dahboard
     #
@@ -2577,7 +2487,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.DashboardAggregateTableLookml:
         """Get Aggregate Table LookML for a dashboard"""
         dashboard_id = self.encode_path_param(dashboard_id)
-        response = cast(
+        return cast(
             mdls.DashboardAggregateTableLookml,
             self.get(
                 path=f"/dashboards/aggregate_table_lookml/{dashboard_id}",
@@ -2585,7 +2495,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get lookml of a UDD
     #
@@ -2600,7 +2509,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.DashboardLookml:
         """Get lookml of a UDD"""
         dashboard_id = self.encode_path_param(dashboard_id)
-        response = cast(
+        return cast(
             mdls.DashboardLookml,
             self.get(
                 path=f"/dashboards/lookml/{dashboard_id}",
@@ -2608,7 +2517,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Search Dashboard Elements
     #
@@ -2655,7 +2563,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.DashboardElement]:
         """Search Dashboard Elements"""
-        response = cast(
+        return cast(
             Sequence[mdls.DashboardElement],
             self.get(
                 path="/dashboard_elements/search",
@@ -2672,7 +2580,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about the dashboard element with a specific id.
     #
@@ -2687,7 +2594,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.DashboardElement:
         """Get DashboardElement"""
         dashboard_element_id = self.encode_path_param(dashboard_element_id)
-        response = cast(
+        return cast(
             mdls.DashboardElement,
             self.get(
                 path=f"/dashboard_elements/{dashboard_element_id}",
@@ -2696,7 +2603,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update the dashboard element with a specific id.
     #
@@ -2712,7 +2618,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.DashboardElement:
         """Update DashboardElement"""
         dashboard_element_id = self.encode_path_param(dashboard_element_id)
-        response = cast(
+        return cast(
             mdls.DashboardElement,
             self.patch(
                 path=f"/dashboard_elements/{dashboard_element_id}",
@@ -2722,7 +2628,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete a dashboard element with a specific id.
     #
@@ -2735,7 +2640,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Delete DashboardElement"""
         dashboard_element_id = self.encode_path_param(dashboard_element_id)
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/dashboard_elements/{dashboard_element_id}",
@@ -2743,7 +2648,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all the dashboard elements on a dashboard with a specific id.
     #
@@ -2758,7 +2662,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.DashboardElement]:
         """Get All DashboardElements"""
         dashboard_id = self.encode_path_param(dashboard_id)
-        response = cast(
+        return cast(
             Sequence[mdls.DashboardElement],
             self.get(
                 path=f"/dashboards/{dashboard_id}/dashboard_elements",
@@ -2767,7 +2671,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a dashboard element on the dashboard with a specific id.
     #
@@ -2780,7 +2683,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.DashboardElement:
         """Create DashboardElement"""
-        response = cast(
+        return cast(
             mdls.DashboardElement,
             self.post(
                 path="/dashboard_elements",
@@ -2790,7 +2693,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about the dashboard filters with a specific id.
     #
@@ -2805,7 +2707,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.DashboardFilter:
         """Get Dashboard Filter"""
         dashboard_filter_id = self.encode_path_param(dashboard_filter_id)
-        response = cast(
+        return cast(
             mdls.DashboardFilter,
             self.get(
                 path=f"/dashboard_filters/{dashboard_filter_id}",
@@ -2814,7 +2716,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update the dashboard filter with a specific id.
     #
@@ -2830,7 +2731,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.DashboardFilter:
         """Update Dashboard Filter"""
         dashboard_filter_id = self.encode_path_param(dashboard_filter_id)
-        response = cast(
+        return cast(
             mdls.DashboardFilter,
             self.patch(
                 path=f"/dashboard_filters/{dashboard_filter_id}",
@@ -2840,7 +2741,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete a dashboard filter with a specific id.
     #
@@ -2853,7 +2753,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Delete Dashboard Filter"""
         dashboard_filter_id = self.encode_path_param(dashboard_filter_id)
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/dashboard_filters/{dashboard_filter_id}",
@@ -2861,7 +2761,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all the dashboard filters on a dashboard with a specific id.
     #
@@ -2876,7 +2775,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.DashboardFilter]:
         """Get All Dashboard Filters"""
         dashboard_id = self.encode_path_param(dashboard_id)
-        response = cast(
+        return cast(
             Sequence[mdls.DashboardFilter],
             self.get(
                 path=f"/dashboards/{dashboard_id}/dashboard_filters",
@@ -2885,7 +2784,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a dashboard filter on the dashboard with a specific id.
     #
@@ -2898,7 +2796,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.DashboardFilter:
         """Create Dashboard Filter"""
-        response = cast(
+        return cast(
             mdls.DashboardFilter,
             self.post(
                 path="/dashboard_filters",
@@ -2908,7 +2806,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about the dashboard elements with a specific id.
     #
@@ -2925,7 +2822,7 @@ class Looker31SDK(api_methods.APIMethods):
         dashboard_layout_component_id = self.encode_path_param(
             dashboard_layout_component_id
         )
-        response = cast(
+        return cast(
             mdls.DashboardLayoutComponent,
             self.get(
                 path=f"/dashboard_layout_components/{dashboard_layout_component_id}",
@@ -2934,7 +2831,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update the dashboard element with a specific id.
     #
@@ -2952,7 +2848,7 @@ class Looker31SDK(api_methods.APIMethods):
         dashboard_layout_component_id = self.encode_path_param(
             dashboard_layout_component_id
         )
-        response = cast(
+        return cast(
             mdls.DashboardLayoutComponent,
             self.patch(
                 path=f"/dashboard_layout_components/{dashboard_layout_component_id}",
@@ -2962,7 +2858,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all the dashboard layout components for a dashboard layout with a specific id.
     #
@@ -2977,7 +2872,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.DashboardLayoutComponent]:
         """Get All DashboardLayoutComponents"""
         dashboard_layout_id = self.encode_path_param(dashboard_layout_id)
-        response = cast(
+        return cast(
             Sequence[mdls.DashboardLayoutComponent],
             self.get(
                 path=f"/dashboard_layouts/{dashboard_layout_id}/dashboard_layout_components",
@@ -2986,7 +2881,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about the dashboard layouts with a specific id.
     #
@@ -3001,7 +2895,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.DashboardLayout:
         """Get DashboardLayout"""
         dashboard_layout_id = self.encode_path_param(dashboard_layout_id)
-        response = cast(
+        return cast(
             mdls.DashboardLayout,
             self.get(
                 path=f"/dashboard_layouts/{dashboard_layout_id}",
@@ -3010,7 +2904,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update the dashboard layout with a specific id.
     #
@@ -3026,7 +2919,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.DashboardLayout:
         """Update DashboardLayout"""
         dashboard_layout_id = self.encode_path_param(dashboard_layout_id)
-        response = cast(
+        return cast(
             mdls.DashboardLayout,
             self.patch(
                 path=f"/dashboard_layouts/{dashboard_layout_id}",
@@ -3036,7 +2929,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete a dashboard layout with a specific id.
     #
@@ -3049,7 +2941,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Delete DashboardLayout"""
         dashboard_layout_id = self.encode_path_param(dashboard_layout_id)
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/dashboard_layouts/{dashboard_layout_id}",
@@ -3057,7 +2949,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all the dashboard elements on a dashboard with a specific id.
     #
@@ -3072,7 +2963,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.DashboardLayout]:
         """Get All DashboardLayouts"""
         dashboard_id = self.encode_path_param(dashboard_id)
-        response = cast(
+        return cast(
             Sequence[mdls.DashboardLayout],
             self.get(
                 path=f"/dashboards/{dashboard_id}/dashboard_layouts",
@@ -3081,7 +2972,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a dashboard layout on the dashboard with a specific id.
     #
@@ -3094,7 +2984,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.DashboardLayout:
         """Create DashboardLayout"""
-        response = cast(
+        return cast(
             mdls.DashboardLayout,
             self.post(
                 path="/dashboard_layouts",
@@ -3104,7 +2994,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -3119,7 +3008,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.DataActionResponse:
         """Send a Data Action"""
-        response = cast(
+        return cast(
             mdls.DataActionResponse,
             self.post(
                 path="/data_actions",
@@ -3128,7 +3017,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # For some data actions, the remote server may supply a form requesting further user input. This endpoint takes a data action, asks the remote server to generate a form for it, and returns that form to you for presentation to the user.
     #
@@ -3139,7 +3027,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.DataActionForm:
         """Fetch Remote Data Action Form"""
-        response = cast(
+        return cast(
             mdls.DataActionForm,
             self.post(
                 path="/data_actions/form",
@@ -3148,7 +3036,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -3162,7 +3049,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Datagroup]:
         """Get All Datagroups"""
-        response = cast(
+        return cast(
             Sequence[mdls.Datagroup],
             self.get(
                 path="/datagroups",
@@ -3170,7 +3057,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about a datagroup.
     #
@@ -3183,7 +3069,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Datagroup:
         """Get Datagroup"""
         datagroup_id = self.encode_path_param(datagroup_id)
-        response = cast(
+        return cast(
             mdls.Datagroup,
             self.get(
                 path=f"/datagroups/{datagroup_id}",
@@ -3191,7 +3077,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update a datagroup using the specified params.
     #
@@ -3205,7 +3090,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Datagroup:
         """Update Datagroup"""
         datagroup_id = self.encode_path_param(datagroup_id)
-        response = cast(
+        return cast(
             mdls.Datagroup,
             self.patch(
                 path=f"/datagroups/{datagroup_id}",
@@ -3214,7 +3099,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -3235,7 +3119,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.DependencyGraph:
         """Get Derived Table graph for model"""
         model = self.encode_path_param(model)
-        response = cast(
+        return cast(
             mdls.DependencyGraph,
             self.get(
                 path=f"/derived_table/graph/model/{model}",
@@ -3244,7 +3128,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the subgraph representing this derived table and its dependencies.
     #
@@ -3261,7 +3144,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.DependencyGraph:
         """Get subgraph of derived table and dependencies"""
         view = self.encode_path_param(view)
-        response = cast(
+        return cast(
             mdls.DependencyGraph,
             self.get(
                 path=f"/derived_table/graph/view/{view}",
@@ -3270,7 +3153,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -3308,7 +3190,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Folder]:
         """Search Folders"""
-        response = cast(
+        return cast(
             Sequence[mdls.Folder],
             self.get(
                 path="/folders/search",
@@ -3330,7 +3212,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about the folder with a specific id.
     #
@@ -3345,7 +3226,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Folder:
         """Get Folder"""
         folder_id = self.encode_path_param(folder_id)
-        response = cast(
+        return cast(
             mdls.Folder,
             self.get(
                 path=f"/folders/{folder_id}",
@@ -3354,7 +3235,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update the folder with a specific id.
     #
@@ -3368,7 +3248,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Folder:
         """Update Folder"""
         folder_id = self.encode_path_param(folder_id)
-        response = cast(
+        return cast(
             mdls.Folder,
             self.patch(
                 path=f"/folders/{folder_id}",
@@ -3377,7 +3257,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete the folder with a specific id including any children folders.
     # **DANGER** this will delete all looks and dashboards in the folder.
@@ -3391,7 +3270,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Delete Folder"""
         folder_id = self.encode_path_param(folder_id)
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/folders/{folder_id}",
@@ -3399,7 +3278,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all folders.
     #
@@ -3414,7 +3292,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Folder]:
         """Get All Folders"""
-        response = cast(
+        return cast(
             Sequence[mdls.Folder],
             self.get(
                 path="/folders",
@@ -3423,7 +3301,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a folder with specified information.
     #
@@ -3437,7 +3314,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Folder:
         """Create Folder"""
-        response = cast(
+        return cast(
             mdls.Folder,
             self.post(
                 path="/folders",
@@ -3446,7 +3323,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the children of a folder.
     #
@@ -3467,7 +3343,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.Folder]:
         """Get Folder Children"""
         folder_id = self.encode_path_param(folder_id)
-        response = cast(
+        return cast(
             Sequence[mdls.Folder],
             self.get(
                 path=f"/folders/{folder_id}/children",
@@ -3481,7 +3357,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Search the children of a folder
     #
@@ -3500,7 +3375,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.Folder]:
         """Search Folder Children"""
         folder_id = self.encode_path_param(folder_id)
-        response = cast(
+        return cast(
             Sequence[mdls.Folder],
             self.get(
                 path=f"/folders/{folder_id}/children/search",
@@ -3509,7 +3384,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the parent of a folder
     #
@@ -3524,7 +3398,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Folder:
         """Get Folder Parent"""
         folder_id = self.encode_path_param(folder_id)
-        response = cast(
+        return cast(
             mdls.Folder,
             self.get(
                 path=f"/folders/{folder_id}/parent",
@@ -3533,7 +3407,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the ancestors of a folder
     #
@@ -3548,7 +3421,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.Folder]:
         """Get Folder Ancestors"""
         folder_id = self.encode_path_param(folder_id)
-        response = cast(
+        return cast(
             Sequence[mdls.Folder],
             self.get(
                 path=f"/folders/{folder_id}/ancestors",
@@ -3557,7 +3430,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get all looks in a folder.
     # In API 3.x, this will return all looks in a folder, including looks in the trash.
@@ -3574,7 +3446,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.LookWithQuery]:
         """Get Folder Looks"""
         folder_id = self.encode_path_param(folder_id)
-        response = cast(
+        return cast(
             Sequence[mdls.LookWithQuery],
             self.get(
                 path=f"/folders/{folder_id}/looks",
@@ -3583,7 +3455,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the dashboards in a folder
     #
@@ -3598,7 +3469,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.Dashboard]:
         """Get Folder Dashboards"""
         folder_id = self.encode_path_param(folder_id)
-        response = cast(
+        return cast(
             Sequence[mdls.Dashboard],
             self.get(
                 path=f"/folders/{folder_id}/dashboards",
@@ -3607,7 +3478,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -3635,7 +3505,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Group]:
         """Get All Groups"""
-        response = cast(
+        return cast(
             Sequence[mdls.Group],
             self.get(
                 path="/groups",
@@ -3652,7 +3522,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Creates a new group (admin only).
     #
@@ -3665,7 +3534,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Group:
         """Create Group"""
-        response = cast(
+        return cast(
             mdls.Group,
             self.post(
                 path="/groups",
@@ -3675,7 +3544,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Search groups
     #
@@ -3728,7 +3596,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Group]:
         """Search Groups"""
-        response = cast(
+        return cast(
             Sequence[mdls.Group],
             self.get(
                 path="/groups/search",
@@ -3748,7 +3616,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about a group.
     #
@@ -3762,7 +3629,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Group:
         """Get Group"""
-        response = cast(
+        return cast(
             mdls.Group,
             self.get(
                 path=f"/groups/{group_id}",
@@ -3771,7 +3638,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Updates the a group (admin only).
     #
@@ -3786,7 +3652,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Group:
         """Update Group"""
-        response = cast(
+        return cast(
             mdls.Group,
             self.patch(
                 path=f"/groups/{group_id}",
@@ -3796,7 +3662,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Deletes a group (admin only).
     #
@@ -3808,7 +3673,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete Group"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/groups/{group_id}",
@@ -3816,7 +3681,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all the groups in a group
     #
@@ -3830,7 +3694,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Group]:
         """Get All Groups in Group"""
-        response = cast(
+        return cast(
             Sequence[mdls.Group],
             self.get(
                 path=f"/groups/{group_id}/groups",
@@ -3839,7 +3703,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Adds a new group to a group.
     #
@@ -3852,7 +3715,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Group:
         """Add a Group to Group"""
-        response = cast(
+        return cast(
             mdls.Group,
             self.post(
                 path=f"/groups/{group_id}/groups",
@@ -3861,7 +3724,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all the users directly included in a group.
     #
@@ -3881,7 +3743,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.User]:
         """Get All Users in Group"""
-        response = cast(
+        return cast(
             Sequence[mdls.User],
             self.get(
                 path=f"/groups/{group_id}/users",
@@ -3895,7 +3757,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Adds a new user to a group.
     #
@@ -3908,7 +3769,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.User:
         """Add a User to Group"""
-        response = cast(
+        return cast(
             mdls.User,
             self.post(
                 path=f"/groups/{group_id}/users",
@@ -3917,7 +3778,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Removes a user from a group.
     #
@@ -3931,7 +3791,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> None:
         """Remove a User from Group"""
-        response = cast(
+        return cast(
             None,
             self.delete(
                 path=f"/groups/{group_id}/users/{user_id}",
@@ -3939,7 +3799,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Removes a group from a group.
     #
@@ -3953,7 +3812,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> None:
         """Deletes a Group from Group"""
-        response = cast(
+        return cast(
             None,
             self.delete(
                 path=f"/groups/{group_id}/groups/{deleting_group_id}",
@@ -3961,7 +3820,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Set the value of a user attribute for a group.
     #
@@ -3978,7 +3836,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.UserAttributeGroupValue:
         """Set User Attribute Group Value"""
-        response = cast(
+        return cast(
             mdls.UserAttributeGroupValue,
             self.patch(
                 path=f"/groups/{group_id}/attribute_values/{user_attribute_id}",
@@ -3987,7 +3845,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Remove a user attribute value from a group.
     #
@@ -4001,7 +3858,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> None:
         """Delete User Attribute Group Value"""
-        response = cast(
+        return cast(
             None,
             self.delete(
                 path=f"/groups/{group_id}/attribute_values/{user_attribute_id}",
@@ -4009,7 +3866,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -4025,7 +3881,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Homepage]:
         """Get All Homepages"""
-        response = cast(
+        return cast(
             Sequence[mdls.Homepage],
             self.get(
                 path="/homepages",
@@ -4034,7 +3890,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a new homepage.
     #
@@ -4047,7 +3902,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Homepage:
         """Create Homepage"""
-        response = cast(
+        return cast(
             mdls.Homepage,
             self.post(
                 path="/homepages",
@@ -4057,7 +3912,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Search Homepages
     #
@@ -4114,7 +3968,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Homepage]:
         """Search Homepages"""
-        response = cast(
+        return cast(
             Sequence[mdls.Homepage],
             self.get(
                 path="/homepages/search",
@@ -4137,7 +3991,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about a homepage.
     #
@@ -4151,7 +4004,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Homepage:
         """Get Homepage"""
-        response = cast(
+        return cast(
             mdls.Homepage,
             self.get(
                 path=f"/homepages/{homepage_id}",
@@ -4160,7 +4013,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update a homepage definition.
     #
@@ -4175,7 +4027,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Homepage:
         """Update Homepage"""
-        response = cast(
+        return cast(
             mdls.Homepage,
             self.patch(
                 path=f"/homepages/{homepage_id}",
@@ -4185,7 +4037,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete a homepage.
     #
@@ -4197,7 +4048,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete Homepage"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/homepages/{homepage_id}",
@@ -4205,7 +4056,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all homepage items.
     #
@@ -4221,7 +4071,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.HomepageItem]:
         """Get All Homepage Items"""
-        response = cast(
+        return cast(
             Sequence[mdls.HomepageItem],
             self.get(
                 path="/homepage_items",
@@ -4234,7 +4084,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a new homepage item.
     #
@@ -4247,7 +4096,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.HomepageItem:
         """Create Homepage Item"""
-        response = cast(
+        return cast(
             mdls.HomepageItem,
             self.post(
                 path="/homepage_items",
@@ -4257,7 +4106,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about a homepage item.
     #
@@ -4271,7 +4119,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.HomepageItem:
         """Get Homepage Item"""
-        response = cast(
+        return cast(
             mdls.HomepageItem,
             self.get(
                 path=f"/homepage_items/{homepage_item_id}",
@@ -4280,7 +4128,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update a homepage item definition.
     #
@@ -4295,7 +4142,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.HomepageItem:
         """Update Homepage Item"""
-        response = cast(
+        return cast(
             mdls.HomepageItem,
             self.patch(
                 path=f"/homepage_items/{homepage_item_id}",
@@ -4305,7 +4152,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete a homepage item.
     #
@@ -4317,7 +4163,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete Homepage Item"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/homepage_items/{homepage_item_id}",
@@ -4325,7 +4171,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all homepage sections.
     #
@@ -4339,7 +4184,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.HomepageSection]:
         """Get All Homepage sections"""
-        response = cast(
+        return cast(
             Sequence[mdls.HomepageSection],
             self.get(
                 path="/homepage_sections",
@@ -4348,7 +4193,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a new homepage section.
     #
@@ -4361,7 +4205,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.HomepageSection:
         """Create Homepage section"""
-        response = cast(
+        return cast(
             mdls.HomepageSection,
             self.post(
                 path="/homepage_sections",
@@ -4371,7 +4215,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about a homepage section.
     #
@@ -4385,7 +4228,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.HomepageSection:
         """Get Homepage section"""
-        response = cast(
+        return cast(
             mdls.HomepageSection,
             self.get(
                 path=f"/homepage_sections/{homepage_section_id}",
@@ -4394,7 +4237,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update a homepage section definition.
     #
@@ -4409,7 +4251,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.HomepageSection:
         """Update Homepage section"""
-        response = cast(
+        return cast(
             mdls.HomepageSection,
             self.patch(
                 path=f"/homepage_sections/{homepage_section_id}",
@@ -4419,7 +4261,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete a homepage section.
     #
@@ -4431,7 +4272,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete Homepage section"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/homepage_sections/{homepage_section_id}",
@@ -4439,7 +4280,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about the primary homepage's sections.
     #
@@ -4451,7 +4291,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.HomepageSection]:
         """Get All Primary homepage sections"""
-        response = cast(
+        return cast(
             Sequence[mdls.HomepageSection],
             self.get(
                 path="/primary_homepage_sections",
@@ -4460,7 +4300,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -4476,7 +4315,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.IntegrationHub]:
         """Get All Integration Hubs"""
-        response = cast(
+        return cast(
             Sequence[mdls.IntegrationHub],
             self.get(
                 path="/integration_hubs",
@@ -4485,7 +4324,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a new Integration Hub.
     #
@@ -4500,7 +4338,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.IntegrationHub:
         """Create Integration Hub"""
-        response = cast(
+        return cast(
             mdls.IntegrationHub,
             self.post(
                 path="/integration_hubs",
@@ -4510,7 +4348,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about a Integration Hub.
     #
@@ -4524,7 +4361,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.IntegrationHub:
         """Get Integration Hub"""
-        response = cast(
+        return cast(
             mdls.IntegrationHub,
             self.get(
                 path=f"/integration_hubs/{integration_hub_id}",
@@ -4533,7 +4370,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update a Integration Hub definition.
     #
@@ -4550,7 +4386,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.IntegrationHub:
         """Update Integration Hub"""
-        response = cast(
+        return cast(
             mdls.IntegrationHub,
             self.patch(
                 path=f"/integration_hubs/{integration_hub_id}",
@@ -4560,7 +4396,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete a Integration Hub.
     #
@@ -4572,7 +4407,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete Integration Hub"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/integration_hubs/{integration_hub_id}",
@@ -4580,7 +4415,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # Accepts the legal agreement for a given integration hub. This only works for integration hubs that have legal_agreement_required set to true and legal_agreement_signed set to false.
     #
@@ -4592,7 +4426,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.IntegrationHub:
         """Accept Integration Hub Legal Agreement"""
-        response = cast(
+        return cast(
             mdls.IntegrationHub,
             self.post(
                 path=f"/integration_hubs/{integration_hub_id}/accept_legal_agreement",
@@ -4600,7 +4434,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all Integrations.
     #
@@ -4614,7 +4447,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Integration]:
         """Get All Integrations"""
-        response = cast(
+        return cast(
             Sequence[mdls.Integration],
             self.get(
                 path="/integrations",
@@ -4626,7 +4459,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about a Integration.
     #
@@ -4641,7 +4473,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Integration:
         """Get Integration"""
         integration_id = self.encode_path_param(integration_id)
-        response = cast(
+        return cast(
             mdls.Integration,
             self.get(
                 path=f"/integrations/{integration_id}",
@@ -4650,7 +4482,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update parameters on a Integration.
     #
@@ -4666,7 +4497,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Integration:
         """Update Integration"""
         integration_id = self.encode_path_param(integration_id)
-        response = cast(
+        return cast(
             mdls.Integration,
             self.patch(
                 path=f"/integrations/{integration_id}",
@@ -4676,7 +4507,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # Returns the Integration form for presentation to the user.
     #
@@ -4690,7 +4520,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.DataActionForm:
         """Fetch Remote Integration Form"""
         integration_id = self.encode_path_param(integration_id)
-        response = cast(
+        return cast(
             mdls.DataActionForm,
             self.post(
                 path=f"/integrations/{integration_id}/form",
@@ -4699,7 +4529,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # Tests the integration to make sure all the settings are working.
     #
@@ -4712,7 +4541,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.IntegrationTestResult:
         """Test integration"""
         integration_id = self.encode_path_param(integration_id)
-        response = cast(
+        return cast(
             mdls.IntegrationTestResult,
             self.post(
                 path=f"/integrations/{integration_id}/test",
@@ -4720,7 +4549,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -4742,7 +4570,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Look]:
         """Get All Looks"""
-        response = cast(
+        return cast(
             Sequence[mdls.Look],
             self.get(
                 path="/looks",
@@ -4751,7 +4579,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a Look
     #
@@ -4770,7 +4597,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.LookWithQuery:
         """Create Look"""
-        response = cast(
+        return cast(
             mdls.LookWithQuery,
             self.post(
                 path="/looks",
@@ -4780,7 +4607,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Search Looks
     #
@@ -4850,7 +4676,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Look]:
         """Search Looks"""
-        response = cast(
+        return cast(
             Sequence[mdls.Look],
             self.get(
                 path="/looks/search",
@@ -4877,7 +4703,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get a Look.
     #
@@ -4893,7 +4718,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.LookWithQuery:
         """Get Look"""
-        response = cast(
+        return cast(
             mdls.LookWithQuery,
             self.get(
                 path=f"/looks/{look_id}",
@@ -4902,7 +4727,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Modify a Look
     #
@@ -4936,7 +4760,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.LookWithQuery:
         """Update Look"""
-        response = cast(
+        return cast(
             mdls.LookWithQuery,
             self.patch(
                 path=f"/looks/{look_id}",
@@ -4946,7 +4770,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Permanently Delete a Look
     #
@@ -4964,7 +4787,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete Look"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/looks/{look_id}",
@@ -4972,7 +4795,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Run a Look
     #
@@ -5028,7 +4850,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Union[str, bytes]:
         """Run Look"""
         result_format = self.encode_path_param(result_format)
-        response = cast(
+        return cast(
             Union[str, bytes],
             self.get(
                 path=f"/looks/{look_id}/run/{result_format}",
@@ -5050,7 +4872,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -5066,7 +4887,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.LookmlModel]:
         """Get All LookML Models"""
-        response = cast(
+        return cast(
             Sequence[mdls.LookmlModel],
             self.get(
                 path="/lookml_models",
@@ -5075,7 +4896,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a lookml model using the specified configuration.
     #
@@ -5086,7 +4906,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.LookmlModel:
         """Create LookML Model"""
-        response = cast(
+        return cast(
             mdls.LookmlModel,
             self.post(
                 path="/lookml_models",
@@ -5095,7 +4915,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about a lookml model.
     #
@@ -5110,7 +4929,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.LookmlModel:
         """Get LookML Model"""
         lookml_model_name = self.encode_path_param(lookml_model_name)
-        response = cast(
+        return cast(
             mdls.LookmlModel,
             self.get(
                 path=f"/lookml_models/{lookml_model_name}",
@@ -5119,7 +4938,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update a lookml model using the specified configuration.
     #
@@ -5133,7 +4951,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.LookmlModel:
         """Update LookML Model"""
         lookml_model_name = self.encode_path_param(lookml_model_name)
-        response = cast(
+        return cast(
             mdls.LookmlModel,
             self.patch(
                 path=f"/lookml_models/{lookml_model_name}",
@@ -5142,7 +4960,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete a lookml model.
     #
@@ -5155,7 +4972,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Delete LookML Model"""
         lookml_model_name = self.encode_path_param(lookml_model_name)
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/lookml_models/{lookml_model_name}",
@@ -5163,7 +4980,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about a lookml model explore.
     #
@@ -5181,7 +4997,7 @@ class Looker31SDK(api_methods.APIMethods):
         """Get LookML Model Explore"""
         lookml_model_name = self.encode_path_param(lookml_model_name)
         explore_name = self.encode_path_param(explore_name)
-        response = cast(
+        return cast(
             mdls.LookmlModelExplore,
             self.get(
                 path=f"/lookml_models/{lookml_model_name}/explores/{explore_name}",
@@ -5190,7 +5006,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -5209,7 +5024,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.GitBranch]:
         """Get All Git Branches"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             Sequence[mdls.GitBranch],
             self.get(
                 path=f"/projects/{project_id}/git_branches",
@@ -5217,7 +5032,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the Current Git Branch
     #
@@ -5232,7 +5046,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.GitBranch:
         """Get Active Git Branch"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             mdls.GitBranch,
             self.get(
                 path=f"/projects/{project_id}/git_branch",
@@ -5240,7 +5054,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Checkout and/or reset --hard an existing Git Branch
     #
@@ -5262,7 +5075,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.GitBranch:
         """Update Project Git Branch"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             mdls.GitBranch,
             self.put(
                 path=f"/projects/{project_id}/git_branch",
@@ -5271,7 +5084,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create and Checkout a Git Branch
     #
@@ -5292,7 +5104,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.GitBranch:
         """Checkout New Git Branch"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             mdls.GitBranch,
             self.post(
                 path=f"/projects/{project_id}/git_branch",
@@ -5301,7 +5113,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the specified Git Branch
     #
@@ -5319,7 +5130,7 @@ class Looker31SDK(api_methods.APIMethods):
         """Find a Git Branch"""
         project_id = self.encode_path_param(project_id)
         branch_name = self.encode_path_param(branch_name)
-        response = cast(
+        return cast(
             mdls.GitBranch,
             self.get(
                 path=f"/projects/{project_id}/git_branch/{branch_name}",
@@ -5327,7 +5138,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete the specified Git Branch
     #
@@ -5345,7 +5155,7 @@ class Looker31SDK(api_methods.APIMethods):
         """Delete a Git Branch"""
         project_id = self.encode_path_param(project_id)
         branch_name = self.encode_path_param(branch_name)
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/projects/{project_id}/git_branch/{branch_name}",
@@ -5353,7 +5163,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Deploy a Remote Branch or Ref to Production
     #
@@ -5378,7 +5187,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Deploy Remote Branch or Ref to Production"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             str,
             self.post(
                 path=f"/projects/{project_id}/deploy_ref_to_production",
@@ -5387,7 +5196,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Deploy LookML from this Development Mode Project to Production
     #
@@ -5411,7 +5219,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Deploy To Production"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             str,
             self.post(
                 path=f"/projects/{project_id}/deploy_to_production",
@@ -5419,7 +5227,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Reset a project to the revision of the project that is in production.
     #
@@ -5434,7 +5241,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Reset To Production"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             str,
             self.post(
                 path=f"/projects/{project_id}/reset_to_production",
@@ -5442,7 +5249,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Reset a project development branch to the revision of the project that is on the remote.
     #
@@ -5457,7 +5263,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Reset To Remote"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             str,
             self.post(
                 path=f"/projects/{project_id}/reset_to_remote",
@@ -5465,7 +5271,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get All Projects
     #
@@ -5479,7 +5284,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Project]:
         """Get All Projects"""
-        response = cast(
+        return cast(
             Sequence[mdls.Project],
             self.get(
                 path="/projects",
@@ -5488,7 +5293,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create A Project
     #
@@ -5505,7 +5309,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Project:
         """Create Project"""
-        response = cast(
+        return cast(
             mdls.Project,
             self.post(
                 path="/projects",
@@ -5514,7 +5318,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get A Project
     #
@@ -5531,7 +5334,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Project:
         """Get Project"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             mdls.Project,
             self.get(
                 path=f"/projects/{project_id}",
@@ -5540,7 +5343,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update Project Configuration
     #
@@ -5577,7 +5379,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Project:
         """Update Project"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             mdls.Project,
             self.patch(
                 path=f"/projects/{project_id}",
@@ -5587,7 +5389,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get A Projects Manifest object
     #
@@ -5602,7 +5403,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Manifest:
         """Get Manifest"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             mdls.Manifest,
             self.get(
                 path=f"/projects/{project_id}/manifest",
@@ -5610,7 +5411,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Git Deploy Key
     #
@@ -5625,7 +5425,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Git Deploy Key"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             str,
             self.get(
                 path=f"/projects/{project_id}/git/deploy_key",
@@ -5633,7 +5433,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create Git Deploy Key
     #
@@ -5654,7 +5453,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Create Deploy Key"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             str,
             self.post(
                 path=f"/projects/{project_id}/git/deploy_key",
@@ -5662,7 +5461,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get Cached Project Validation Results
     #
@@ -5688,7 +5486,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.ProjectValidationCache:
         """Cached Project Validation Results"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             mdls.ProjectValidationCache,
             self.get(
                 path=f"/projects/{project_id}/validate",
@@ -5697,7 +5495,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Validate Project
     #
@@ -5720,7 +5517,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.ProjectValidation:
         """Validate Project"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             mdls.ProjectValidation,
             self.post(
                 path=f"/projects/{project_id}/validate",
@@ -5729,7 +5526,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get Project Workspace
     #
@@ -5746,7 +5542,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.ProjectWorkspace:
         """Get Project Workspace"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             mdls.ProjectWorkspace,
             self.get(
                 path=f"/projects/{project_id}/current_workspace",
@@ -5755,7 +5551,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get All Project Files
     #
@@ -5772,7 +5567,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.ProjectFile]:
         """Get All Project Files"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             Sequence[mdls.ProjectFile],
             self.get(
                 path=f"/projects/{project_id}/files",
@@ -5781,7 +5576,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get Project File Info
     #
@@ -5800,7 +5594,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.ProjectFile:
         """Get Project File"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             mdls.ProjectFile,
             self.get(
                 path=f"/projects/{project_id}/files/file",
@@ -5809,7 +5603,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get All Git Connection Tests
     #
@@ -5833,7 +5626,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.GitConnectionTest]:
         """Get All Git Connection Tests"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             Sequence[mdls.GitConnectionTest],
             self.get(
                 path=f"/projects/{project_id}/git_connection_tests",
@@ -5842,7 +5635,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Run a git connection test
     #
@@ -5868,7 +5660,7 @@ class Looker31SDK(api_methods.APIMethods):
         """Run Git Connection Test"""
         project_id = self.encode_path_param(project_id)
         test_id = self.encode_path_param(test_id)
-        response = cast(
+        return cast(
             mdls.GitConnectionTestResult,
             self.get(
                 path=f"/projects/{project_id}/git_connection_tests/{test_id}",
@@ -5880,7 +5672,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get All LookML Tests
     #
@@ -5899,7 +5690,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.LookmlTest]:
         """Get All LookML Tests"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             Sequence[mdls.LookmlTest],
             self.get(
                 path=f"/projects/{project_id}/lookml_tests",
@@ -5908,7 +5699,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Run LookML Tests
     #
@@ -5929,7 +5719,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.LookmlTestResult]:
         """Run LookML Test"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             Sequence[mdls.LookmlTestResult],
             self.get(
                 path=f"/projects/{project_id}/lookml_tests/run",
@@ -5938,7 +5728,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Creates a tag for the most recent commit, or a specific ref is a SHA is provided
     #
@@ -5960,7 +5749,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Project:
         """Tag Ref"""
         project_id = self.encode_path_param(project_id)
-        response = cast(
+        return cast(
             mdls.Project,
             self.post(
                 path=f"/projects/{project_id}/tag",
@@ -5974,7 +5763,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Configure Repository Credential for a remote dependency
     #
@@ -5996,7 +5784,7 @@ class Looker31SDK(api_methods.APIMethods):
         """Create Repository Credential"""
         root_project_id = self.encode_path_param(root_project_id)
         credential_id = self.encode_path_param(credential_id)
-        response = cast(
+        return cast(
             mdls.RepositoryCredential,
             self.put(
                 path=f"/projects/{root_project_id}/credential/{credential_id}",
@@ -6005,7 +5793,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Repository Credential for a remote dependency
     #
@@ -6026,7 +5813,7 @@ class Looker31SDK(api_methods.APIMethods):
         """Delete Repository Credential"""
         root_project_id = self.encode_path_param(root_project_id)
         credential_id = self.encode_path_param(credential_id)
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/projects/{root_project_id}/credential/{credential_id}",
@@ -6034,7 +5821,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get all Repository Credentials for a project
     #
@@ -6049,7 +5835,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.RepositoryCredential]:
         """Get All Repository Credentials"""
         root_project_id = self.encode_path_param(root_project_id)
-        response = cast(
+        return cast(
             Sequence[mdls.RepositoryCredential],
             self.get(
                 path=f"/projects/{root_project_id}/credentials",
@@ -6057,7 +5843,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -6103,7 +5888,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.QueryTask:
         """Run Query Async"""
-        response = cast(
+        return cast(
             mdls.QueryTask,
             self.post(
                 path="/query_tasks",
@@ -6127,7 +5912,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Fetch results of multiple async queries
     #
@@ -6145,7 +5929,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> MutableMapping[str, Any]:
         """Get Multiple Async Query Results"""
-        response = cast(
+        return cast(
             MutableMapping[str, Any],
             self.get(
                 path="/query_tasks/multi_results",
@@ -6154,7 +5938,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get Query Task details
     #
@@ -6175,7 +5958,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.QueryTask:
         """Get Async Query Info"""
         query_task_id = self.encode_path_param(query_task_id)
-        response = cast(
+        return cast(
             mdls.QueryTask,
             self.get(
                 path=f"/query_tasks/{query_task_id}",
@@ -6184,7 +5967,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get Async Query Results
     #
@@ -6219,7 +6001,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Get Async Query Results"""
         query_task_id = self.encode_path_param(query_task_id)
-        response = cast(
+        return cast(
             str,
             self.get(
                 path=f"/query_tasks/{query_task_id}/results",
@@ -6227,7 +6009,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get a previously created query by id.
     #
@@ -6257,7 +6038,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Query:
         """Get Query"""
-        response = cast(
+        return cast(
             mdls.Query,
             self.get(
                 path=f"/queries/{query_id}",
@@ -6266,7 +6047,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the query for a given query slug.
     #
@@ -6297,7 +6077,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Query:
         """Get Query for Slug"""
         slug = self.encode_path_param(slug)
-        response = cast(
+        return cast(
             mdls.Query,
             self.get(
                 path=f"/queries/slug/{slug}",
@@ -6306,7 +6086,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a query.
     #
@@ -6326,7 +6105,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Query:
         """Create Query"""
-        response = cast(
+        return cast(
             mdls.Query,
             self.post(
                 path="/queries",
@@ -6336,7 +6115,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Run a saved query.
     #
@@ -6395,7 +6173,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Union[str, bytes]:
         """Run Query"""
         result_format = self.encode_path_param(result_format)
-        response = cast(
+        return cast(
             Union[str, bytes],
             self.get(
                 path=f"/queries/{query_id}/run/{result_format}",
@@ -6417,7 +6195,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Run the query that is specified inline in the posted body.
     #
@@ -6504,7 +6281,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Union[str, bytes]:
         """Run Inline Query"""
         result_format = self.encode_path_param(result_format)
-        response = cast(
+        return cast(
             Union[str, bytes],
             self.post(
                 path=f"/queries/run/{result_format}",
@@ -6527,7 +6304,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Run an URL encoded query.
     #
@@ -6597,7 +6373,7 @@ class Looker31SDK(api_methods.APIMethods):
         model_name = self.encode_path_param(model_name)
         view_name = self.encode_path_param(view_name)
         result_format = self.encode_path_param(result_format)
-        response = cast(
+        return cast(
             Union[str, bytes],
             self.get(
                 path=f"/queries/models/{model_name}/views/{view_name}/run/{result_format}",
@@ -6605,7 +6381,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get Merge Query
     #
@@ -6622,7 +6397,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.MergeQuery:
         """Get Merge Query"""
         merge_query_id = self.encode_path_param(merge_query_id)
-        response = cast(
+        return cast(
             mdls.MergeQuery,
             self.get(
                 path=f"/merge_queries/{merge_query_id}",
@@ -6631,7 +6406,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create Merge Query
     #
@@ -6660,7 +6434,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.MergeQuery:
         """Create Merge Query"""
-        response = cast(
+        return cast(
             mdls.MergeQuery,
             self.post(
                 path="/merge_queries",
@@ -6670,7 +6444,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # Get information about all running queries.
     #
@@ -6680,7 +6453,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.RunningQueries]:
         """Get All Running Queries"""
-        response = cast(
+        return cast(
             Sequence[mdls.RunningQueries],
             self.get(
                 path="/running_queries",
@@ -6688,7 +6461,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # Kill a query with a specific query_task_id.
     #
@@ -6701,7 +6473,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Kill Running Query"""
         query_task_id = self.encode_path_param(query_task_id)
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/running_queries/{query_task_id}",
@@ -6709,7 +6481,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # Get a SQL Runner query.
     #
@@ -6722,7 +6493,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.SqlQuery:
         """Get SQL Runner Query"""
         slug = self.encode_path_param(slug)
-        response = cast(
+        return cast(
             mdls.SqlQuery,
             self.get(
                 path=f"/sql_queries/{slug}",
@@ -6730,7 +6501,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a SQL Runner Query
     #
@@ -6743,7 +6513,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.SqlQuery:
         """Create SQL Runner Query"""
-        response = cast(
+        return cast(
             mdls.SqlQuery,
             self.post(
                 path="/sql_queries",
@@ -6752,7 +6522,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # Execute a SQL Runner query in a given result_format.
     #
@@ -6770,7 +6539,7 @@ class Looker31SDK(api_methods.APIMethods):
         """Run SQL Runner Query"""
         slug = self.encode_path_param(slug)
         result_format = self.encode_path_param(result_format)
-        response = cast(
+        return cast(
             Union[str, bytes],
             self.post(
                 path=f"/sql_queries/{slug}/run/{result_format}",
@@ -6779,7 +6548,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -6816,7 +6584,7 @@ class Looker31SDK(api_methods.APIMethods):
         """Create Lookml Dashboard Render Task"""
         dashboard_id = self.encode_path_param(dashboard_id)
         result_format = self.encode_path_param(result_format)
-        response = cast(
+        return cast(
             mdls.RenderTask,
             self.post(
                 path=f"/render_tasks/lookml_dashboards/{dashboard_id}/{result_format}",
@@ -6832,7 +6600,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a new task to render a look to an image.
     #
@@ -6857,7 +6624,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.RenderTask:
         """Create Look Render Task"""
         result_format = self.encode_path_param(result_format)
-        response = cast(
+        return cast(
             mdls.RenderTask,
             self.post(
                 path=f"/render_tasks/looks/{look_id}/{result_format}",
@@ -6866,7 +6633,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a new task to render an existing query to an image.
     #
@@ -6891,7 +6657,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.RenderTask:
         """Create Query Render Task"""
         result_format = self.encode_path_param(result_format)
-        response = cast(
+        return cast(
             mdls.RenderTask,
             self.post(
                 path=f"/render_tasks/queries/{query_id}/{result_format}",
@@ -6900,7 +6666,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a new task to render a dashboard to a document or image.
     #
@@ -6930,7 +6695,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.RenderTask:
         """Create Dashboard Render Task"""
         result_format = self.encode_path_param(result_format)
-        response = cast(
+        return cast(
             mdls.RenderTask,
             self.post(
                 path=f"/render_tasks/dashboards/{dashboard_id}/{result_format}",
@@ -6946,7 +6711,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about a render task.
     #
@@ -6965,7 +6729,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.RenderTask:
         """Get Render Task"""
         render_task_id = self.encode_path_param(render_task_id)
-        response = cast(
+        return cast(
             mdls.RenderTask,
             self.get(
                 path=f"/render_tasks/{render_task_id}",
@@ -6974,7 +6738,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the document or image produced by a completed render task.
     #
@@ -7003,7 +6766,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> bytes:
         """Render Task Results"""
         render_task_id = self.encode_path_param(render_task_id)
-        response = cast(
+        return cast(
             bytes,
             self.get(
                 path=f"/render_tasks/{render_task_id}/results",
@@ -7011,7 +6774,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -7064,7 +6826,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.ModelSet]:
         """Search Model Sets"""
-        response = cast(
+        return cast(
             Sequence[mdls.ModelSet],
             self.get(
                 path="/model_sets/search",
@@ -7083,7 +6845,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about the model set with a specific id.
     #
@@ -7097,7 +6858,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ModelSet:
         """Get Model Set"""
-        response = cast(
+        return cast(
             mdls.ModelSet,
             self.get(
                 path=f"/model_sets/{model_set_id}",
@@ -7106,7 +6867,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update information about the model set with a specific id.
     #
@@ -7119,7 +6879,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ModelSet:
         """Update Model Set"""
-        response = cast(
+        return cast(
             mdls.ModelSet,
             self.patch(
                 path=f"/model_sets/{model_set_id}",
@@ -7128,7 +6888,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete the model set with a specific id.
     #
@@ -7140,7 +6899,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete Model Set"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/model_sets/{model_set_id}",
@@ -7148,7 +6907,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all model sets.
     #
@@ -7160,7 +6918,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.ModelSet]:
         """Get All Model Sets"""
-        response = cast(
+        return cast(
             Sequence[mdls.ModelSet],
             self.get(
                 path="/model_sets",
@@ -7169,7 +6927,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a model set with the specified information. Model sets are used by Roles.
     #
@@ -7180,7 +6937,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ModelSet:
         """Create Model Set"""
-        response = cast(
+        return cast(
             mdls.ModelSet,
             self.post(
                 path="/model_sets",
@@ -7189,7 +6946,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get all supported permissions.
     #
@@ -7199,7 +6955,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Permission]:
         """Get All Permissions"""
-        response = cast(
+        return cast(
             Sequence[mdls.Permission],
             self.get(
                 path="/permissions",
@@ -7207,7 +6963,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Search permission sets
     # Returns all permission set records that match the given search criteria.
@@ -7256,7 +7011,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.PermissionSet]:
         """Search Permission Sets"""
-        response = cast(
+        return cast(
             Sequence[mdls.PermissionSet],
             self.get(
                 path="/permission_sets/search",
@@ -7275,7 +7030,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about the permission set with a specific id.
     #
@@ -7289,7 +7043,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.PermissionSet:
         """Get Permission Set"""
-        response = cast(
+        return cast(
             mdls.PermissionSet,
             self.get(
                 path=f"/permission_sets/{permission_set_id}",
@@ -7298,7 +7052,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update information about the permission set with a specific id.
     #
@@ -7311,7 +7064,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.PermissionSet:
         """Update Permission Set"""
-        response = cast(
+        return cast(
             mdls.PermissionSet,
             self.patch(
                 path=f"/permission_sets/{permission_set_id}",
@@ -7320,7 +7073,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete the permission set with a specific id.
     #
@@ -7332,7 +7084,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete Permission Set"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/permission_sets/{permission_set_id}",
@@ -7340,7 +7092,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all permission sets.
     #
@@ -7352,7 +7103,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.PermissionSet]:
         """Get All Permission Sets"""
-        response = cast(
+        return cast(
             Sequence[mdls.PermissionSet],
             self.get(
                 path="/permission_sets",
@@ -7361,7 +7112,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a permission set with the specified information. Permission sets are used by Roles.
     #
@@ -7372,7 +7122,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.PermissionSet:
         """Create Permission Set"""
-        response = cast(
+        return cast(
             mdls.PermissionSet,
             self.post(
                 path="/permission_sets",
@@ -7381,7 +7131,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all roles.
     #
@@ -7395,7 +7144,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Role]:
         """Get All Roles"""
-        response = cast(
+        return cast(
             Sequence[mdls.Role],
             self.get(
                 path="/roles",
@@ -7404,7 +7153,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a role with the specified information.
     #
@@ -7415,7 +7163,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Role:
         """Create Role"""
-        response = cast(
+        return cast(
             mdls.Role,
             self.post(
                 path="/roles",
@@ -7424,7 +7172,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Search roles
     #
@@ -7473,7 +7220,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Role]:
         """Search Roles"""
-        response = cast(
+        return cast(
             Sequence[mdls.Role],
             self.get(
                 path="/roles/search",
@@ -7491,7 +7238,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about the role with a specific id.
     #
@@ -7503,7 +7249,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Role:
         """Get Role"""
-        response = cast(
+        return cast(
             mdls.Role,
             self.get(
                 path=f"/roles/{role_id}",
@@ -7511,7 +7257,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update information about the role with a specific id.
     #
@@ -7524,7 +7269,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Role:
         """Update Role"""
-        response = cast(
+        return cast(
             mdls.Role,
             self.patch(
                 path=f"/roles/{role_id}",
@@ -7533,7 +7278,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete the role with a specific id.
     #
@@ -7545,7 +7289,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete Role"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/roles/{role_id}",
@@ -7553,7 +7297,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all the groups with the role that has a specific id.
     #
@@ -7567,7 +7310,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Group]:
         """Get Role Groups"""
-        response = cast(
+        return cast(
             Sequence[mdls.Group],
             self.get(
                 path=f"/roles/{role_id}/groups",
@@ -7576,7 +7319,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Set all groups for a role, removing all existing group associations from that role.
     #
@@ -7589,7 +7331,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Group]:
         """Update Role Groups"""
-        response = cast(
+        return cast(
             Sequence[mdls.Group],
             self.put(
                 path=f"/roles/{role_id}/groups",
@@ -7598,7 +7340,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all the users with the role that has a specific id.
     #
@@ -7614,7 +7355,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.User]:
         """Get Role Users"""
-        response = cast(
+        return cast(
             Sequence[mdls.User],
             self.get(
                 path=f"/roles/{role_id}/users",
@@ -7626,7 +7367,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Set all the users of the role with a specific id.
     #
@@ -7639,7 +7379,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.User]:
         """Update Role Users"""
-        response = cast(
+        return cast(
             Sequence[mdls.User],
             self.put(
                 path=f"/roles/{role_id}/users",
@@ -7648,7 +7388,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -7668,7 +7407,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.ScheduledPlan]:
         """Scheduled Plans for Space"""
-        response = cast(
+        return cast(
             Sequence[mdls.ScheduledPlan],
             self.get(
                 path=f"/scheduled_plans/space/{space_id}",
@@ -7677,7 +7416,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get Information About a Scheduled Plan
     #
@@ -7693,7 +7431,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ScheduledPlan:
         """Get Scheduled Plan"""
-        response = cast(
+        return cast(
             mdls.ScheduledPlan,
             self.get(
                 path=f"/scheduled_plans/{scheduled_plan_id}",
@@ -7702,7 +7440,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update a Scheduled Plan
     #
@@ -7756,7 +7493,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ScheduledPlan:
         """Update Scheduled Plan"""
-        response = cast(
+        return cast(
             mdls.ScheduledPlan,
             self.patch(
                 path=f"/scheduled_plans/{scheduled_plan_id}",
@@ -7765,7 +7502,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete a Scheduled Plan
     #
@@ -7781,7 +7517,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete Scheduled Plan"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/scheduled_plans/{scheduled_plan_id}",
@@ -7789,7 +7525,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### List All Scheduled Plans
     #
@@ -7815,7 +7550,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.ScheduledPlan]:
         """Get All Scheduled Plans"""
-        response = cast(
+        return cast(
             Sequence[mdls.ScheduledPlan],
             self.get(
                 path="/scheduled_plans",
@@ -7828,7 +7563,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a Scheduled Plan
     #
@@ -7896,7 +7630,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ScheduledPlan:
         """Create Scheduled Plan"""
-        response = cast(
+        return cast(
             mdls.ScheduledPlan,
             self.post(
                 path="/scheduled_plans",
@@ -7905,7 +7639,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Run a Scheduled Plan Immediately
     #
@@ -7952,7 +7685,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ScheduledPlan:
         """Run Scheduled Plan Once"""
-        response = cast(
+        return cast(
             mdls.ScheduledPlan,
             self.post(
                 path="/scheduled_plans/run_once",
@@ -7961,7 +7694,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get Scheduled Plans for a Look
     #
@@ -7989,7 +7721,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.ScheduledPlan]:
         """Scheduled Plans for Look"""
-        response = cast(
+        return cast(
             Sequence[mdls.ScheduledPlan],
             self.get(
                 path=f"/scheduled_plans/look/{look_id}",
@@ -8002,7 +7734,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get Scheduled Plans for a Dashboard
     #
@@ -8030,7 +7761,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.ScheduledPlan]:
         """Scheduled Plans for Dashboard"""
-        response = cast(
+        return cast(
             Sequence[mdls.ScheduledPlan],
             self.get(
                 path=f"/scheduled_plans/dashboard/{dashboard_id}",
@@ -8043,7 +7774,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get Scheduled Plans for a LookML Dashboard
     #
@@ -8072,7 +7802,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.ScheduledPlan]:
         """Scheduled Plans for LookML Dashboard"""
         lookml_dashboard_id = self.encode_path_param(lookml_dashboard_id)
-        response = cast(
+        return cast(
             Sequence[mdls.ScheduledPlan],
             self.get(
                 path=f"/scheduled_plans/lookml_dashboard/{lookml_dashboard_id}",
@@ -8085,7 +7815,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Run a Scheduled Plan By Id Immediately
     # This function creates a run-once schedule plan based on an existing scheduled plan,
@@ -8144,7 +7873,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ScheduledPlan:
         """Run Scheduled Plan Once by Id"""
-        response = cast(
+        return cast(
             mdls.ScheduledPlan,
             self.post(
                 path=f"/scheduled_plans/{scheduled_plan_id}/run_once",
@@ -8153,7 +7882,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -8169,7 +7897,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ApiSession:
         """Get Session"""
-        response = cast(
+        return cast(
             mdls.ApiSession,
             self.get(
                 path="/session",
@@ -8177,7 +7905,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update API Session
     #
@@ -8207,7 +7934,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ApiSession:
         """Update Session"""
-        response = cast(
+        return cast(
             mdls.ApiSession,
             self.patch(
                 path="/session",
@@ -8216,7 +7943,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -8282,7 +8008,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Space]:
         """Search Spaces"""
-        response = cast(
+        return cast(
             Sequence[mdls.Space],
             self.get(
                 path="/spaces/search",
@@ -8304,7 +8030,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about the space with a specific id.
     #
@@ -8319,7 +8044,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Space:
         """Get Space"""
         space_id = self.encode_path_param(space_id)
-        response = cast(
+        return cast(
             mdls.Space,
             self.get(
                 path=f"/spaces/{space_id}",
@@ -8328,7 +8053,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update the space with a specific id.
     #
@@ -8342,7 +8066,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Space:
         """Update Space"""
         space_id = self.encode_path_param(space_id)
-        response = cast(
+        return cast(
             mdls.Space,
             self.patch(
                 path=f"/spaces/{space_id}",
@@ -8351,7 +8075,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete the space with a specific id including any children spaces.
     # **DANGER** this will delete all looks and dashboards in the space.
@@ -8365,7 +8088,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Delete Space"""
         space_id = self.encode_path_param(space_id)
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/spaces/{space_id}",
@@ -8373,7 +8096,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all spaces.
     #
@@ -8388,7 +8110,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.SpaceBase]:
         """Get All Spaces"""
-        response = cast(
+        return cast(
             Sequence[mdls.SpaceBase],
             self.get(
                 path="/spaces",
@@ -8397,7 +8119,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a space with specified information.
     #
@@ -8411,7 +8132,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Space:
         """Create Space"""
-        response = cast(
+        return cast(
             mdls.Space,
             self.post(
                 path="/spaces",
@@ -8420,7 +8141,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the children of a space.
     #
@@ -8441,7 +8161,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.Space]:
         """Get Space Children"""
         space_id = self.encode_path_param(space_id)
-        response = cast(
+        return cast(
             Sequence[mdls.Space],
             self.get(
                 path=f"/spaces/{space_id}/children",
@@ -8455,7 +8175,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Search the children of a space
     #
@@ -8474,7 +8193,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.Space]:
         """Search Space Children"""
         space_id = self.encode_path_param(space_id)
-        response = cast(
+        return cast(
             Sequence[mdls.Space],
             self.get(
                 path=f"/spaces/{space_id}/children/search",
@@ -8483,7 +8202,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the parent of a space
     #
@@ -8498,7 +8216,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Space:
         """Get Space Parent"""
         space_id = self.encode_path_param(space_id)
-        response = cast(
+        return cast(
             mdls.Space,
             self.get(
                 path=f"/spaces/{space_id}/parent",
@@ -8507,7 +8225,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the ancestors of a space
     #
@@ -8522,7 +8239,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.Space]:
         """Get Space Ancestors"""
         space_id = self.encode_path_param(space_id)
-        response = cast(
+        return cast(
             Sequence[mdls.Space],
             self.get(
                 path=f"/spaces/{space_id}/ancestors",
@@ -8531,7 +8248,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get all looks in a space.
     # In API 3.x, this will return all looks in a space, including looks in the trash.
@@ -8548,7 +8264,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.LookWithQuery]:
         """Get Space Looks"""
         space_id = self.encode_path_param(space_id)
-        response = cast(
+        return cast(
             Sequence[mdls.LookWithQuery],
             self.get(
                 path=f"/spaces/{space_id}/looks",
@@ -8557,7 +8273,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the dashboards in a space
     #
@@ -8572,7 +8287,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.Dashboard]:
         """Get Space Dashboards"""
         space_id = self.encode_path_param(space_id)
-        response = cast(
+        return cast(
             Sequence[mdls.Dashboard],
             self.get(
                 path=f"/spaces/{space_id}/dashboards",
@@ -8581,7 +8296,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -8603,7 +8317,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Theme]:
         """Get All Themes"""
-        response = cast(
+        return cast(
             Sequence[mdls.Theme],
             self.get(
                 path="/themes",
@@ -8612,7 +8326,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a theme
     #
@@ -8637,7 +8350,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Theme:
         """Create Theme"""
-        response = cast(
+        return cast(
             mdls.Theme,
             self.post(
                 path="/themes",
@@ -8646,7 +8359,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Search all themes for matching criteria.
     #
@@ -8711,7 +8423,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Theme]:
         """Search Themes"""
-        response = cast(
+        return cast(
             Sequence[mdls.Theme],
             self.get(
                 path="/themes/search",
@@ -8730,7 +8442,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the default theme
     #
@@ -8748,7 +8459,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Theme:
         """Get Default Theme"""
-        response = cast(
+        return cast(
             mdls.Theme,
             self.get(
                 path="/themes/default",
@@ -8757,7 +8468,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Set the global default theme by theme name
     #
@@ -8779,7 +8489,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Theme:
         """Set Default Theme"""
-        response = cast(
+        return cast(
             mdls.Theme,
             self.put(
                 path="/themes/default",
@@ -8788,7 +8498,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get active themes
     #
@@ -8812,7 +8521,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.Theme]:
         """Get Active Themes"""
-        response = cast(
+        return cast(
             Sequence[mdls.Theme],
             self.get(
                 path="/themes/active",
@@ -8821,7 +8530,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get the named theme if it's active. Otherwise, return the default theme
     #
@@ -8840,7 +8548,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.Theme:
         """Get Theme or Default"""
-        response = cast(
+        return cast(
             mdls.Theme,
             self.get(
                 path="/themes/theme_or_default",
@@ -8849,7 +8557,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Validate a theme with the specified information
     #
@@ -8866,7 +8573,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.ValidationError:
         """Validate Theme"""
-        response = cast(
+        return cast(
             mdls.ValidationError,
             self.post(
                 path="/themes/validate",
@@ -8875,7 +8582,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get a theme by ID
     #
@@ -8894,7 +8600,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Theme:
         """Get Theme"""
         theme_id = self.encode_path_param(theme_id)
-        response = cast(
+        return cast(
             mdls.Theme,
             self.get(
                 path=f"/themes/{theme_id}",
@@ -8903,7 +8609,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update the theme by id.
     #
@@ -8919,7 +8624,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> mdls.Theme:
         """Update Theme"""
         theme_id = self.encode_path_param(theme_id)
-        response = cast(
+        return cast(
             mdls.Theme,
             self.patch(
                 path=f"/themes/{theme_id}",
@@ -8928,7 +8633,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete a specific theme by id
     #
@@ -8949,7 +8653,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> str:
         """Delete Theme"""
         theme_id = self.encode_path_param(theme_id)
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/themes/{theme_id}",
@@ -8957,7 +8661,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # endregion
 
@@ -8973,7 +8676,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.User:
         """Get Current User"""
-        response = cast(
+        return cast(
             mdls.User,
             self.get(
                 path="/user",
@@ -8982,7 +8685,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about all users.
     #
@@ -9002,7 +8704,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.User]:
         """Get All Users"""
-        response = cast(
+        return cast(
             Sequence[mdls.User],
             self.get(
                 path="/users",
@@ -9017,7 +8719,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Create a user with the specified information.
     #
@@ -9030,7 +8731,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.User:
         """Create User"""
-        response = cast(
+        return cast(
             mdls.User,
             self.post(
                 path="/users",
@@ -9040,7 +8741,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Search users
     #
@@ -9107,7 +8807,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> Sequence[mdls.User]:
         """Search Users"""
-        response = cast(
+        return cast(
             Sequence[mdls.User],
             self.get(
                 path="/users/search",
@@ -9131,7 +8831,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Search for user accounts by name
     #
@@ -9169,7 +8868,7 @@ class Looker31SDK(api_methods.APIMethods):
     ) -> Sequence[mdls.User]:
         """Search User Names"""
         pattern = self.encode_path_param(pattern)
-        response = cast(
+        return cast(
             Sequence[mdls.User],
             self.get(
                 path=f"/users/search/names/{pattern}",
@@ -9189,7 +8888,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about the user with a specific id.
     #
@@ -9207,7 +8905,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.User:
         """Get User by Id"""
-        response = cast(
+        return cast(
             mdls.User,
             self.get(
                 path=f"/users/{user_id}",
@@ -9216,7 +8914,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Update information about the user with a specific id.
     #
@@ -9231,7 +8928,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.User:
         """Update User"""
-        response = cast(
+        return cast(
             mdls.User,
             self.patch(
                 path=f"/users/{user_id}",
@@ -9241,7 +8938,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Delete the user with a specific id.
     #
@@ -9255,7 +8951,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete User"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/users/{user_id}",
@@ -9263,7 +8959,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Get information about the user with a credential of given type with specific id.
     #
@@ -9308,7 +9003,7 @@ class Looker31SDK(api_methods.APIMethods):
         """Get User by Credential Id"""
         credential_type = self.encode_path_param(credential_type)
         credential_id = self.encode_path_param(credential_id)
-        response = cast(
+        return cast(
             mdls.User,
             self.get(
                 path=f"/users/credential/{credential_type}/{credential_id}",
@@ -9317,7 +9012,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Email/password login information for the specified user.
     #
@@ -9331,7 +9025,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.CredentialsEmail:
         """Get Email/Password Credential"""
-        response = cast(
+        return cast(
             mdls.CredentialsEmail,
             self.get(
                 path=f"/users/{user_id}/credentials_email",
@@ -9340,7 +9034,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Email/password login information for the specified user.
     #
@@ -9355,7 +9048,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.CredentialsEmail:
         """Create Email/Password Credential"""
-        response = cast(
+        return cast(
             mdls.CredentialsEmail,
             self.post(
                 path=f"/users/{user_id}/credentials_email",
@@ -9365,7 +9058,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Email/password login information for the specified user.
     #
@@ -9380,7 +9072,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.CredentialsEmail:
         """Update Email/Password Credential"""
-        response = cast(
+        return cast(
             mdls.CredentialsEmail,
             self.patch(
                 path=f"/users/{user_id}/credentials_email",
@@ -9390,7 +9082,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Email/password login information for the specified user.
     #
@@ -9402,7 +9093,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete Email/Password Credential"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/users/{user_id}/credentials_email",
@@ -9410,7 +9101,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Two-factor login information for the specified user.
     #
@@ -9424,7 +9114,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.CredentialsTotp:
         """Get Two-Factor Credential"""
-        response = cast(
+        return cast(
             mdls.CredentialsTotp,
             self.get(
                 path=f"/users/{user_id}/credentials_totp",
@@ -9433,7 +9123,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Two-factor login information for the specified user.
     #
@@ -9448,7 +9137,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.CredentialsTotp:
         """Create Two-Factor Credential"""
-        response = cast(
+        return cast(
             mdls.CredentialsTotp,
             self.post(
                 path=f"/users/{user_id}/credentials_totp",
@@ -9458,7 +9147,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Two-factor login information for the specified user.
     #
@@ -9470,7 +9158,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete Two-Factor Credential"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/users/{user_id}/credentials_totp",
@@ -9478,7 +9166,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### LDAP login information for the specified user.
     #
@@ -9492,7 +9179,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.CredentialsLDAP:
         """Get LDAP Credential"""
-        response = cast(
+        return cast(
             mdls.CredentialsLDAP,
             self.get(
                 path=f"/users/{user_id}/credentials_ldap",
@@ -9501,7 +9188,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### LDAP login information for the specified user.
     #
@@ -9513,7 +9199,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete LDAP Credential"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/users/{user_id}/credentials_ldap",
@@ -9521,7 +9207,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Google authentication login information for the specified user.
     #
@@ -9535,7 +9220,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.CredentialsGoogle:
         """Get Google Auth Credential"""
-        response = cast(
+        return cast(
             mdls.CredentialsGoogle,
             self.get(
                 path=f"/users/{user_id}/credentials_google",
@@ -9544,7 +9229,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Google authentication login information for the specified user.
     #
@@ -9556,7 +9240,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete Google Auth Credential"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/users/{user_id}/credentials_google",
@@ -9564,7 +9248,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Saml authentication login information for the specified user.
     #
@@ -9578,7 +9261,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.CredentialsSaml:
         """Get Saml Auth Credential"""
-        response = cast(
+        return cast(
             mdls.CredentialsSaml,
             self.get(
                 path=f"/users/{user_id}/credentials_saml",
@@ -9587,7 +9270,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### Saml authentication login information for the specified user.
     #
@@ -9599,7 +9281,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete Saml Auth Credential"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/users/{user_id}/credentials_saml",
@@ -9607,7 +9289,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### OpenID Connect (OIDC) authentication login information for the specified user.
     #
@@ -9621,7 +9302,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.CredentialsOIDC:
         """Get OIDC Auth Credential"""
-        response = cast(
+        return cast(
             mdls.CredentialsOIDC,
             self.get(
                 path=f"/users/{user_id}/credentials_oidc",
@@ -9630,7 +9311,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### OpenID Connect (OIDC) authentication login information for the specified user.
     #
@@ -9642,7 +9322,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete OIDC Auth Credential"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/users/{user_id}/credentials_oidc",
@@ -9650,7 +9330,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### API 3 login information for the specified user. This is for the newer API keys that can be added for any user.
     #
@@ -9666,7 +9345,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> mdls.CredentialsApi3:
         """Get API 3 Credential"""
-        response = cast(
+        return cast(
             mdls.CredentialsApi3,
             self.get(
                 path=f"/users/{user_id}/credentials_api3/{credentials_api3_id}",
@@ -9675,7 +9354,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### API 3 login information for the specified user. This is for the newer API keys that can be added for any user.
     #
@@ -9689,7 +9367,7 @@ class Looker31SDK(api_methods.APIMethods):
         transport_options: Optional[transport.TransportOptions] = None,
     ) -> str:
         """Delete API 3 Credential"""
-        response = cast(
+        return cast(
             str,
             self.delete(
                 path=f"/users/{user_id}/credentials_api3/{credentials_api3_id}",
@@ -9697,7 +9375,6 @@ class Looker31SDK(api_methods.APIMethods):
                 transport_options=transport_options,
             ),
         )
-        return response
 
     # ### API 3 login information for the specified user. This is for the newer API keys that can be added for any user.
     #

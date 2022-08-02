@@ -49,10 +49,10 @@ def main():
 def get_dashboard(title: str) -> Optional[models.Dashboard]:
     """Get a dashboard by title."""
     title = title.lower()
-    dashboard = next(iter(sdk.search_dashboards(title=title)), None)
-    if not dashboard:
+    if dashboard := next(iter(sdk.search_dashboards(title=title)), None):
+        return dashboard
+    else:
         raise Exception(f'dashboard "{title}" not found')
-    return dashboard
 
 
 def download_dashboard(

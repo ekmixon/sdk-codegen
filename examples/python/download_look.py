@@ -42,10 +42,10 @@ def main():
 
 def get_look(title: str) -> models.Look:
     title = title.lower()
-    look = next(iter(sdk.search_looks(title=title)), None)
-    if not look:
+    if look := next(iter(sdk.search_looks(title=title)), None):
+        return look
+    else:
         raise Exception(f"look '{title}' was not found")
-    return look
 
 
 def download_look(look: models.Look, result_format: str, width: int, height: int):

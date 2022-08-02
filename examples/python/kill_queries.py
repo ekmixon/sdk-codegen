@@ -30,12 +30,12 @@ def kill_queries(user_id=None, source=None):
 
   if len(queries) == 0:
     print('Currently, there is no running query in the instance')
-    
-  else:
-    for i in range(0, len(queries)):   
-        if queries[i]['source'] == source or queries[i]['user']['id'] == user_id: 
-          sdk.kill_query(queries[i]['query_task_id'])
-          print('Killed query task id' + queries[i]['query_task_id'])
 
-        else:
-          print('Currently, there are no running queries that meet the conditions')
+  else:
+    for i in range(len(queries)):   
+      if queries[i]['source'] == source or queries[i]['user']['id'] == user_id: 
+        sdk.kill_query(queries[i]['query_task_id'])
+        print('Killed query task id' + queries[i]['query_task_id'])
+
+      else:
+        print('Currently, there are no running queries that meet the conditions')

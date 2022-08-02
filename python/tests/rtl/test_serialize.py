@@ -374,7 +374,7 @@ def test_dict_iter(bm):
     ]
     for k in bm:
         keys.remove(k)
-    assert keys == []
+    assert not keys
 
 
 def test_dict_contains(bm):

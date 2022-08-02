@@ -15,23 +15,19 @@ sdk = looker_sdk.init31("app/looker.ini")
 
 
 def get_my_user():
-    my_user = sdk.me()
-    return my_user
+    return sdk.me()
 
 
 def get_looks():
-    response = sdk.all_looks()
-    return response
+    return sdk.all_looks()
 
 
 def get_html_for_look(look_id):
-    response = sdk.run_look(look_id=look_id, result_format="html", apply_vis=True)
-    return response
+    return sdk.run_look(look_id=look_id, result_format="html", apply_vis=True)
 
 
 def get_image_for_look(look_id):
     response = sdk.run_look(
         look_id=look_id, result_format="png", image_width=300, image_height=300
     )
-    image_string = base64.b64encode(response)
-    return image_string
+    return base64.b64encode(response)

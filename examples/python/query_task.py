@@ -38,7 +38,7 @@ def main_models(model: str, view: str, fields: List[str]) -> str:
     delay = 0.5  # wait .5 seconds
     while True:
         poll = sdk.query_task(query_task_id=task.id)
-        if poll.status == "failure" or poll.status == "error":
+        if poll.status in ["failure", "error"]:
             print(poll)
             raise Exception("Query failed")
         elif poll.status == "complete":
